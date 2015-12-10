@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component name="org.athento.nuxeo.athento-nx-common-doctypes.branding" version="1.0.0">
+	<require>org.nuxeo.runtime.started</require>
+
+	<extension target="org.nuxeo.theme.styling.service" point="flavors">
+
+	</extension>
+
+	<extension target="org.nuxeo.theme.styling.service" point="pages">
+
+	</extension>
+
+	<extension
+		target="org.nuxeo.ecm.platform.ui.web.auth.service.PluggableAuthenticationService"
+		point="loginScreen">
+		
+	</extension>
+
+</component>
