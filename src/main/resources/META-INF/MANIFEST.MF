@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-SymbolicName: org.athento.nuxeo.athento-nx-common-doctypes
-Bundle-Version: 1.0
+Bundle-Version: 1.1
 Bundle-Name: athento-nx-common-doctypes
 Require-Bundle: org.nuxeo.runtime
 Bundle-ManifestVersion: 2
