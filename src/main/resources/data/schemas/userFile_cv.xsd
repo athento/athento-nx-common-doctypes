@@ -48,5 +48,11 @@
 	<xs:element name="userFile_companyNumber" type="xs:string" />
 	<!-- User Area -->
 	<xs:element name="userFile_area" type="xs:string" />
-
+	<!-- Identification Number -->
+	<xs:element name="userFile_idNumber" type="xs:string" />
+	<!-- User Mail -->
+	<xs:element name="userFile_mail" type="xs:string" />
+	<!-- User Address -->
+	<xs:element name="userFile_address" type="xs:string" />
+	
 </xs:schema>
