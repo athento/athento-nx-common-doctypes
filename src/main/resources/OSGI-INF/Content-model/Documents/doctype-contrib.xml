@@ -22,8 +22,8 @@
 		<doctype name="ProjectFile" extends="File" append="true">
 			<schema name="userFile" />
 			<schema name="projectFile" />
-			<schema name="common" />
-			<schema name="dublincore" />
+			<schema name="marketing" />
+			<schema name="invoicing" />
 			<facet name="HasRelatedText" />
 			<facet name="Versionable" />
 			<facet name="Commentable" />
