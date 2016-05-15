@@ -11,19 +11,33 @@
 			<rule grant="true">
 				<permission>AddChildren</permission>
 				<type>ProjectFile</type>
+				<type>ProjectFolder</type>
 				<type>UserFile</type>
 				<condition>!document.isImmutable()</condition>
 				<condition>#{typeManager.getAllowedSubTypes(document.getType(),
 					document).size() &gt; 0}</condition>
 			</rule>
+			<rule grant="false">
+				<!-- Denied for ProjectFoder because ProjectFolder has its own New Project 
+					action filtered by filter@CreateNewProject -->
+				<type>ProjectFolder</type>
+			</rule>
 		</filter>
 
+		<!-- To enable Summary for all Folderish (as it is default) and UserFile and ProjectFile -->
 		<filter id="view">
 			<rule grant="false">
 				<condition>#{currentDocument.hasFacet("Folderish") and not
 					(currentDocument.type eq 'UserFile' or currentDocument.type eq
 					'ProjectFile')}
 				</condition>
+			</rule>
+		</filter>
+
+		<filter id="filter@CreateNewProject">
+			<rule grant="true">
+				<permission>Write</permission>
+				<type>ProjectFolder</type>
 			</rule>
 		</filter>
 

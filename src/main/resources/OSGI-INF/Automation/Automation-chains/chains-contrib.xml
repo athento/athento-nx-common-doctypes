@@ -1,10 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<component name="org.athento.nuxeo.athento-nx-common-doctypes.chains" version="1.0.0">
+<component name="org.athento.nuxeo.athento-nx-common-doctypes.chains"
+	version="1.0.0">
 	<require>org.nuxeo.runtime.started</require>
 
 	<extension target="org.nuxeo.ecm.core.operation.OperationServiceComponent"
 		point="chains">
+
+		<chain id="projectFile-assignID">
+			<documentation>
+				Assign ID with the following rules: region + year (2
+				digits) + unique
+				incremental number (4 digits)
+			</documentation>
+			<operation id="Context.FetchDocument" />
+			<!-- Category. Used for uniqueness of number id -->
+			<operation id="Context.SetVar">
+				<param type="string" name="name">category_var</param>
+				<param type="object" name="value">expr:Document["projectFile:category"]
+				</param>
+			</operation>
+			<!-- Region. Used for uniqueness of number id AND the composition of the id-->
+			<operation id="Context.SetVar">
+				<param type="string" name="name">index_var</param>
+				<param type="object" name="value">expr:Document["invoicing:region"].lastIndexOf('/')
+				</param>
+			</operation>
+			<operation id="Context.SetVar">
+				<param type="string" name="name">index_var</param>
+				<param type="object" name="value">expr:index_var == -1 ? 2 : index_var
+				</param>
+			</operation>
+			<operation id="Context.SetVar">
+				<documentation>From invoicing:region, as a String value of a Chained
+					Vocabulary, take the parent value
+				</documentation>
+				<param type="string" name="name">region_var</param>
+				<param type="object" name="value">expr:Document["invoicing:region"].valueOf(Document["invoicing:region"],0,index_var)
+				</param>
+			</operation>
+			<operation id="Context.SetVar">
+				<param type="string" name="name">region_index_var</param>
+				<param type="object" name="value">expr:Fn.getVocabularyLabel("org_key",region_var)
+				</param>
+			</operation>
+			<!-- Year. Used for uniqueness of number id AND the composition of the id-->
+			<operation id="Context.SetVar">
+				<param type="string" name="name">year_var</param>
+				<param type="object" name="value">expr:new
+					java.text.SimpleDateFormat("yy").format(Document["dc:created"].getTime())
+				</param>
+			</operation>
+			<!-- Number, which is formatted with 4 digits -->
+			<operation id="Context.SetVar">
+				<param type="string" name="name">uniquenumber_var</param>
+				<param type="object" name="value">expr:Fn.getNextId("unique-key"+category_var+region_index_var+year_var)
+				</param>
+			</operation>
+			<operation id="Context.SetVar">
+				<param type="string" name="name">uniquenumberformatted_var</param>
+				<param type="object" name="value">expr:uniquenumber_var.format("%04d",Integer.valueOf(uniquenumber_var))
+				</param>
+			</operation>
+			<!-- Final variable id_var with the ID composition. Stored in both title and projectid -->
+			<operation id="Context.SetVar">
+				<param type="string" name="name">id_var</param>
+				<param type="object" name="value">expr:@{region_index_var+year_var+uniquenumberformatted_var}
+				</param>
+			</operation>
+			<operation id="Document.SetProperty">
+				<param type="string" name="xpath">projectFile:projectid</param>
+				<param type="boolean" name="save">false</param>
+				<param type="serializable" name="value">expr:id_var
+				</param>
+			</operation>
+			<operation id="Document.SetProperty">
+				<param type="string" name="xpath">dc:title</param>
+				<param type="boolean" name="save">true</param>
+				<param type="serializable" name="value">expr:id_var
+				</param>
+			</operation>
+		</chain>
+
+		<!-- TODO: Make this chain take "category" via parameter instead of a fixed 
+			value -->
+		<chain id="projectFile-assignCategory">
+			<documentation>Automatically select the category for the project
+			</documentation>
+			<operation id="Context.FetchDocument" />
+			<operation id="Document.SetProperty">
+				<param type="string" name="xpath">projectFile:category</param>
+				<param type="boolean" name="save">false</param>
+				<param type="serializable" name="value">01
+				</param>
+			</operation>
+		</chain>
+
+		<chain id="CreateNewProject">
+			<documentation>Creates New Project based on ProjectFolder category
+			</documentation>
+			<operation id="Context.FetchDocument" />
+			<operation id="Seam.CreateDocumentForm">
+				<param type="string" name="type">ProjectFile</param>
+			</operation>
+		</chain>
 
 	</extension>
 

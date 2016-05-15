@@ -1,17 +1,149 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<component
-	name="org.athento.nuxeo.athento-nx-common-doctypes.vocabularies"
+<component name="org.athento.nuxeo.athento-nx-common-doctypes.vocabularies"
 	version="1.0.0">
 	<require>org.nuxeo.runtime.started</require>
 
 	<extension target="org.nuxeo.ecm.directory.sql.SQLDirectoryFactory"
 		point="directories">
 
+		<directory name="mk_activity">
+			<schema>vocabulary</schema>
+			<dataSource>java:/nxsqldirectory</dataSource>
+			<cacheTimeout>3600</cacheTimeout>
+			<cacheMaxSize>1000</cacheMaxSize>
+			<idField>id</idField>
+			<autoincrementIdField>false</autoincrementIdField>
+			<createTablePolicy>on_missing_columns</createTablePolicy>
+			<table>vocabulary_mk_activity</table>
+			<dataFile>data/vocabularies/mk_activity.csv</dataFile>
+		</directory>
+
+		<directory name="mk_category">
+			<schema>vocabulary</schema>
+			<dataSource>java:/nxsqldirectory</dataSource>
+			<cacheTimeout>3600</cacheTimeout>
+			<cacheMaxSize>1000</cacheMaxSize>
+			<idField>id</idField>
+			<autoincrementIdField>false</autoincrementIdField>
+			<createTablePolicy>on_missing_columns</createTablePolicy>
+			<table>vocabulary_mk_category</table>
+			<dataFile>data/vocabularies/mk_category.csv</dataFile>
+		</directory>
+
+		<directory name="mk_imputation">
+			<schema>vocabulary</schema>
+			<dataSource>java:/nxsqldirectory</dataSource>
+			<cacheTimeout>3600</cacheTimeout>
+			<cacheMaxSize>1000</cacheMaxSize>
+			<idField>id</idField>
+			<autoincrementIdField>false</autoincrementIdField>
+			<createTablePolicy>on_missing_columns</createTablePolicy>
+			<table>vocabulary_mk_imputation</table>
+			<dataFile>data/vocabularies/mk_imputation.csv</dataFile>
+		</directory>
+
+		<directory name="org_high">
+			<schema>vocabulary</schema>
+			<dataSource>java:/nxsqldirectory</dataSource>
+			<cacheTimeout>3600</cacheTimeout>
+			<cacheMaxSize>1000</cacheMaxSize>
+			<idField>id</idField>
+			<autoincrementIdField>false</autoincrementIdField>
+			<createTablePolicy>on_missing_columns</createTablePolicy>
+			<table>vocabulary_org_high</table>
+			<dataFile>data/vocabularies/org_high.csv</dataFile>
+		</directory>
+
+		<directory name="org_key">
+			<schema>vocabulary</schema>
+			<dataSource>java:/nxsqldirectory</dataSource>
+			<cacheTimeout>3600</cacheTimeout>
+			<cacheMaxSize>1000</cacheMaxSize>
+			<idField>id</idField>
+			<autoincrementIdField>false</autoincrementIdField>
+			<createTablePolicy>on_missing_columns</createTablePolicy>
+			<table>vocabulary_org_key</table>
+			<dataFile>data/vocabularies/org_key.csv</dataFile>
+		</directory>
+
+		<directory name="org_low">
+			<schema>xvocabulary</schema>
+			<dataSource>java:/nxsqldirectory</dataSource>
+			<cacheTimeout>3600</cacheTimeout>
+			<cacheMaxSize>1000</cacheMaxSize>
+			<idField>id</idField>
+			<autoincrementIdField>false</autoincrementIdField>
+			<createTablePolicy>on_missing_columns</createTablePolicy>
+			<table>vocabulary_org_low</table>
+			<dataFile>data/vocabularies/org_low.csv</dataFile>
+			<parentDirectory>org_high</parentDirectory>
+		</directory>
+
 	</extension>
 
 	<extension target="org.nuxeo.ecm.directory.ui.DirectoryUIManager"
 		point="directories">
+
+		<directory name="mk_activity" layout="vocabulary" sortField="label" />
+		<directory name="mk_category" layout="vocabulary" sortField="label" />
+		<directory name="mk_imputation" layout="vocabulary"
+			sortField="label" />
+		<directory name="org_high" layout="vocabulary" sortField="label">
+			<deleteConstraint
+				class="org.nuxeo.ecm.directory.api.ui.HierarchicalDirectoryUIDeleteConstraint">
+				<property name="targetDirectory">org_low</property>
+				<property name="targetDirectoryField">parent</property>
+			</deleteConstraint>
+		</directory>
+		<directory name="org_key" layout="vocabulary" sortField="label" />
+		<directory name="org_low" layout="vocabulary-org_low"
+			sortField="label" />
+
+	</extension>
+
+	<extension target="org.nuxeo.ecm.platform.forms.layout.WebLayoutManager"
+		point="layouts">
+		<layout name="vocabulary-org_low">
+			<templates>
+				<template mode="any">/directory/directory_layout_template.xhtml
+				</template>
+			</templates>
+			<rows>
+				<row>
+					<widget>parent</widget>
+				</row>
+				<row>
+					<widget>xvocabulary_id</widget>
+				</row>
+				<row>
+					<widget>xvocabulary_label</widget>
+				</row>
+				<row>
+					<widget>xvocabulary_obsolete</widget>
+				</row>
+				<row>
+					<widget>xvocabulary_order</widget>
+				</row>
+			</rows>
+			<widget name="parent" type="selectOneDirectory">
+				<labels>
+					<label mode="any">label.vocabulary.entry.parent</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>xvocabulary:parent</field>
+				</fields>
+				<properties mode="any">
+					<property name="directoryName">org_high</property>
+					<property name="localize">true</property>
+				</properties>
+				<properties widgetMode="edit">
+					<property name="required">true</property>
+					<property name="displayObsoleteEntries">true</property>
+				</properties>
+			</widget>
+		</layout>
 
 	</extension>
 

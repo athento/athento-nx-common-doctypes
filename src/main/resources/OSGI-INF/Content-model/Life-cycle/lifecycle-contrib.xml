@@ -12,6 +12,9 @@
 		<types>
 			<type name="ProjectFile">ProjectFileLC</type>
 		</types>
+		<types>
+			<type name="ProjectFolder">default</type>
+		</types>
 
 	</extension>
 

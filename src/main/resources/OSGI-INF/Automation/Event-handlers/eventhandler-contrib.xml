@@ -7,6 +7,21 @@
 	<extension target="org.nuxeo.ecm.core.operation.OperationServiceComponent"
 		point="event-handlers">
 
+		<handler chainId="projectFile-assignID">
+			<event>documentCreated</event>
+			<filters>
+				<doctype>ProjectFile</doctype>
+				<attribute>Regular Document</attribute>
+			</filters>
+		</handler>
+		
+		<handler chainId="projectFile-assignCategory">
+			<event>emptyDocumentModelCreated</event>
+			<filters>
+				<doctype>ProjectFile</doctype>
+				<attribute>Regular Document</attribute>
+			</filters>
+		</handler>
 
 	</extension>
 

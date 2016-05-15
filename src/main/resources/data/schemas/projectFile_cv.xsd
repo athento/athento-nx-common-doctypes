@@ -35,12 +35,87 @@
 				maxOccurs="unbounded" />
 		</xs:sequence>
 	</xs:complexType>
-	
+
+	<!-- Activity. Typically is a subcategory, given the Category is used to 
+		define the scope -->
+	<xs:element name="projectFile_activity" type="xs:string" />
+	<!-- Project Type. Categorizes the project at high level: Marketing, IT, 
+		Development, etc -->
+	<xs:element name="projectFile_category" type="xs:string" />
+	<!-- End planned date for the project -->
+	<xs:element name="projectFile_endPlannedDate_min" type="xs:date" />
+	<xs:element name="projectFile_endPlannedDate_max" type="xs:date" />
+	<!-- End real date for the project -->
+	<xs:element name="projectFile_endRealDate_min" type="xs:date" />
+	<xs:element name="projectFile_endRealDate_max" type="xs:date" />
 	<!-- Project ID -->
 	<xs:element name="projectFile_projectid" type="xs:string" />
 	<!-- Project Complete Name -->
 	<xs:element name="projectFile_projectName" type="xs:string" />
 	<!-- Project Manager User ID -->
 	<xs:element name="projectFile_projectUserid" type="xs:string" />
+	<!-- Providers, given the project involves one or many providers -->
+	<xs:element name="projectFile_providers" type="nxs:stringList" />
+	<!-- The user or group that creates for the first time the project and asks 
+		for viability -->
+	<xs:element name="projectFile_solicitantid" type="xs:string" />
+	<!-- The ID given for the project when it's not yet approved (as opposed 
+		to Project ID, already approved) -->
+	<xs:element name="projectFile_initialid" type="xs:string" />
+	<!-- Start planned date for the project -->
+	<xs:element name="projectFile_startPlannedDate_min" type="xs:date" />
+	<xs:element name="projectFile_startPlannedDate_max" type="xs:date" />
+	<!-- Start real date for the project -->
+	<xs:element name="projectFile_startRealDate_min" type="xs:date" />
+	<xs:element name="projectFile_startRealDate_max" type="xs:date" />
+	<!-- Summary of the project. Typically one line -->
+	<xs:element name="projectFile_summary" type="xs:string" />
+
+	<!-- Budget for the project (no bonus) -->
+	<xs:element name="invoicing_budget" type="xs:double" />
+	<!-- Budget originally requested -->
+	<xs:element name="invoicing_budgetRequested" type="xs:double" />
+	<!-- Payments against the budget. Typically every invoice that takes resources 
+		from the budget -->
+	<xs:element name="invoicing_payments" type="xs:double" />
+	<!-- Budget minus payments -->
+	<xs:element name="invoicing_balance" type="xs:double" />
+	<!-- If for any reason, budget can be exceeded at some extend, bonus is 
+		where to reflect it -->
+	<xs:element name="invoicing_budgetBonus" type="xs:double" />
+	<!-- Invoicing Comments -->
+	<xs:element name="invoicing_invoiceComments" type="xs:string" />
+	<!-- Scope of the project, can be national, regional, local... -->
+	<xs:element name="invoicing_imputation" type="xs:string" />
+	<!-- Office -->
+	<xs:element name="invoicing_office" type="xs:string" />
+	<!-- The budget is what it is, but given you can have budgetBonus, this 
+		operative budget will reflect the sum of both -->
+	<xs:element name="invoicing_operativeBudget" type="xs:double" />
+	<!-- Region -->
+	<xs:element name="invoicing_region" type="xs:string" />
+	<!-- Society -->
+	<xs:element name="invoicing_society" type="xs:string" />
+
+
+	<!-- Campaign Description -->
+	<xs:element name="marketing_campaignDescription" type="xs:string" />
+	<!-- Campaign ID -->
+	<xs:element name="marketing_campaignid" type="xs:string" />
+	<!-- Campaign Complete Name -->
+	<xs:element name="marketing_campaignName" type="xs:string" />
+	<!-- Campaign main material. e.g. if a Campaign is made of posters, material 
+		will be "Posters" -->
+	<xs:element name="marketing_material" type="xs:string" />
+	<!-- Quantity. If it makes sense, refers to the number of elements in the 
+		Campaign, e.g. number of posters -->
+	<xs:element name="marketing_quantity" type="xs:string" />
+
+	<!-- When project is validated -->
+	<xs:element name="validation_approvalDate_min" type="xs:date" />
+	<xs:element name="validation_approvalDate_max" type="xs:date" />
+	<!-- When solicitant asks for validation -->
+	<xs:element name="validation_solicitDate_min" type="xs:date" />
+	<xs:element name="validation_solicitDate_max" type="xs:date" />
 
 </xs:schema>

@@ -12,6 +12,7 @@
 		<schema name="projectFile" prefix="projectFile"
 			src="data/schemas/projectFile.xsd" />
 		<schema name="userFile" prefix="userFile" src="data/schemas/userFile.xsd" />
+		<schema name="validation" prefix="validation" src="data/schemas/validation.xsd" />		
 
 	</extension>
 

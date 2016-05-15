@@ -1,12 +1,280 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<component
-	name="org.athento.nuxeo.athento-nx-common-doctypes.tableresult"
+<component name="org.athento.nuxeo.athento-nx-common-doctypes.tableresult"
 	version="1.0.0">
 	<require>org.nuxeo.runtime.started</require>
 
 	<extension target="org.nuxeo.ecm.platform.forms.layout.WebLayoutManager"
 		point="layouts">
+
+		<layout name="ProjectFile_listing">
+			<templates>
+				<template mode="any">/layouts/layout_listing_ajax_template.xhtml
+				</template>
+				<template mode="edit_columns">/layouts/layout_column_selection_template.xhtml
+				</template>
+				<template mode="edit_sort_infos">/layouts/layout_sort_infos_template.xhtml
+				</template>
+				<template mode="edit_sort_infos_map">/layouts/layout_sort_infos_template.xhtml
+				</template>
+				<template mode="csv">/layouts/layout_listing_csv_template.xhtml
+				</template>
+				<template mode="pdf">/layouts/layout_listing_pdf_template.xhtml
+				</template>
+			</templates>
+			<properties mode="any">
+				<property name="showListingHeader">true</property>
+				<property name="showRowEvenOddClass">true</property>
+			</properties>
+			<properties mode="edit_columns">
+				<property name="availableElementsLabel">label.selection.availableColumns</property>
+				<property name="selectedElementsLabel">label.selection.selectedColumns</property>
+				<property name="selectedElementsHelp"></property>
+				<property name="selectSize">10</property>
+				<!-- trying displayAlwaysSelectedColumns=true (default was false) -->
+				<property name="displayAlwaysSelectedColumns">false</property>
+			</properties>
+			<properties mode="edit_sort_infos">
+				<property name="newSortInfoTemplate">#{documentSearchActions.newSortInfo}
+				</property>
+				<property name="required">false</property>
+			</properties>
+			<properties mode="edit_sort_infos_map">
+				<property name="newSortInfoTemplate">#{documentSearchActions.newSortInfoMap}
+				</property>
+				<property name="required">false</property>
+			</properties>
+			<columns>
+				<column name="selection" alwaysSelected="true">
+					<properties mode="any">
+						<property name="isListingSelectionBox">true</property>
+						<property name="useFirstWidgetLabelAsColumnHeader">false</property>
+						<property name="columnStyleClass">iconColumn</property>
+					</properties>
+					<properties mode="csv">
+						<property name="isHidden">true</property>
+					</properties>
+					<properties mode="pdf">
+						<property name="isHidden">true</property>
+					</properties>
+					<widget>listing_ajax_selection_box</widget>
+				</column>
+				<column name="listing_title_link">
+					<properties mode="any">
+						<property name="useFirstWidgetLabelAsColumnHeader">true</property>
+						<property name="columnStyleClass"></property>
+						<property name="label">label.dublincore.title</property>
+						<property name="sortPropertyName">dc:title</property>
+					</properties>
+					<properties mode="edit_sort_infos">
+						<property name="showInSortInfoSelection">true</property>
+					</properties>
+					<properties mode="edit_sort_infos_map">
+						<property name="showInSortInfoSelection">true</property>
+					</properties>
+					<widget>listing_title_link</widget>
+				</column>
+				<column name="creation_date" selectedByDefault="false">
+					<properties mode="any">
+						<property name="useFirstWidgetLabelAsColumnHeader">true</property>
+						<property name="sortPropertyName">dc:created</property>
+						<property name="label">label.dublincore.created</property>
+					</properties>
+					<properties mode="edit_sort_infos">
+						<property name="showInSortInfoSelection">true</property>
+					</properties>
+					<properties mode="edit_sort_infos_map">
+						<property name="showInSortInfoSelection">true</property>
+					</properties>
+					<widget>listing_creation_date</widget>
+				</column>
+				<column name="activity">
+					<properties mode="any">
+						<property name="useFirstWidgetLabelAsColumnHeader">true</property>
+						<property name="columnStyleClass"></property>
+						<property name="label">label.projectFile.activity</property>
+						<property name="sortPropertyName">projectFile:activity</property>
+					</properties>
+					<properties mode="edit_sort_infos">
+						<property name="showInSortInfoSelection">true</property>
+					</properties>
+					<properties mode="edit_sort_infos_map">
+						<property name="showInSortInfoSelection">true</property>
+					</properties>
+					<widget>activity</widget>
+				</column>
+				<column name="operativeBudget">
+					<properties mode="any">
+						<property name="useFirstWidgetLabelAsColumnHeader">true</property>
+						<property name="columnStyleClass"></property>
+						<property name="label">label.invoicing.operativeBudget</property>
+						<property name="sortPropertyName">invoicing:operativeBudget</property>
+					</properties>
+					<properties mode="edit_sort_infos">
+						<property name="showInSortInfoSelection">true</property>
+					</properties>
+					<properties mode="edit_sort_infos_map">
+						<property name="showInSortInfoSelection">true</property>
+					</properties>
+					<widget>operativeBudget</widget>
+				</column>
+				<column name="lifecycle">
+					<properties mode="any">
+						<property name="useFirstWidgetLabelAsColumnHeader">true</property>
+						<property name="sortPropertyName">
+							ecm:currentLifeCycleState
+						</property>
+						<property name="label">label.lifecycle</property>
+					</properties>
+					<properties mode="edit_sort_infos">
+						<property name="showInSortInfoSelection">true</property>
+					</properties>
+					<widget>listing_lifecycle</widget>
+				</column>
+				<column name="summary">
+					<properties mode="any">
+						<property name="useFirstWidgetLabelAsColumnHeader">true</property>
+						<property name="columnStyleClass"></property>
+						<property name="label">label.projectFile.summary</property>
+						<property name="sortPropertyName">projectFile:summary</property>
+					</properties>
+					<properties mode="edit_sort_infos">
+						<property name="showInSortInfoSelection">true</property>
+					</properties>
+					<properties mode="edit_sort_infos_map">
+						<property name="showInSortInfoSelection">true</property>
+					</properties>
+					<widget>summary</widget>
+				</column>
+				
+				<!-- Next ones are not selected by default -->
+				
+				<column name="creation_date" selectedByDefault="false">
+					<properties mode="any">
+						<property name="useFirstWidgetLabelAsColumnHeader">true</property>
+						<property name="sortPropertyName">dc:created</property>
+						<property name="label">label.dublincore.created</property>
+					</properties>
+					<properties mode="edit_sort_infos">
+						<property name="showInSortInfoSelection">true</property>
+					</properties>
+					<properties mode="edit_sort_infos_map">
+						<property name="showInSortInfoSelection">true</property>
+					</properties>
+					<widget>listing_creation_date</widget>
+				</column>
+				<column name="contributors" selectedByDefault="false">
+					<properties mode="any">
+						<property name="useFirstWidgetLabelAsColumnHeader">true</property>
+						<property name="label">label.dublincore.contributors</property>
+					</properties>
+					<widget>listing_contributors</widget>
+				</column>
+				<column name="lastContributor" selectedByDefault="false">
+					<properties mode="any">
+						<property name="useFirstWidgetLabelAsColumnHeader">true</property>
+						<property name="sortPropertyName">dc:lastContributor</property>
+						<property name="label">label.dublincore.lastContributor
+						</property>
+					</properties>
+					<properties mode="edit_sort_infos">
+						<property name="showInSortInfoSelection">true</property>
+					</properties>
+					<properties mode="edit_sort_infos_map">
+						<property name="showInSortInfoSelection">true</property>
+					</properties>
+					<widget>listing_last_contributor</widget>
+				</column>
+				<column name="region" selectedByDefault="false">
+					<properties mode="any">
+						<property name="useFirstWidgetLabelAsColumnHeader">true</property>
+						<property name="columnStyleClass"></property>
+						<property name="label">label.invoicing.region</property>
+						<property name="sortPropertyName">invoicing:region</property>
+					</properties>
+					<properties mode="edit_sort_infos">
+						<property name="showInSortInfoSelection">true</property>
+					</properties>
+					<properties mode="edit_sort_infos_map">
+						<property name="showInSortInfoSelection">true</property>
+					</properties>
+					<widget>region</widget>
+				</column>
+			</columns>
+			<widget name="activity" type="selectOneDirectory">
+				<labels>
+					<label mode="any">label.projectFile.activity</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>data['projectFile']['activity']</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="directoryName">mk_activity</property>
+					<property name="displayIdAndLabel">false</property>
+					<property name="ordering">ordering</property>
+					<property name="localize">true</property>
+				</properties>
+			</widget>
+			<widget name="budget" type="double">
+				<labels>
+					<label mode="any">label.invoicing.budget</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>data['invoicing']['budget']</field>
+				</fields>
+			</widget>
+			<widget name="listing_title_link" type="listing_title_link">
+				<labels>
+					<!-- Redefined with projectid label instead of title -->
+					<label mode="any">label.projectFile.projectid</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>data</field>
+					<field>data.ref</field>
+					<field>data.dc.description</field>
+					<field>data.file.content</field>
+					<field>data.file.content.filename</field>
+				</fields>
+			</widget>
+			<widget name="operativeBudget" type="double">
+				<labels>
+					<label mode="any">label.invoicing.operativeBudget</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>data['invoicing']['operativeBudget']</field>
+				</fields>
+			</widget>
+			<widget name="region" type="chainedDirectory">
+				<labels>
+					<label mode="any">label.invoicing.region</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>data['invoicing']['region']</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="localize">true</property>
+					<property name="parentDirectory">org_high</property>
+					<property name="ordering">label</property>
+					<property name="on2rows">false</property>
+					<property name="childDirectory">org_low</property>
+				</properties>
+			</widget>
+			<widget name="summary" type="double">
+				<labels>
+					<label mode="any">label.projectFile.summary</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>data['projectFile']['summary']</field>
+				</fields>
+			</widget>
+			
+		</layout>
 
 	</extension>
 
