@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component
+	name="org.athento.nuxeo.athento-nx-common-doctypes.formlayout-marketing"
+	version="1.0.0">
+	<require>org.nuxeo.runtime.started</require>
+
+	<extension target="org.nuxeo.ecm.platform.forms.layout.WebLayoutManager"
+		point="layouts">
+
+		<layout name="layout@formlayout-marketing">
+			<labels>
+				<label>label.athento-nx-common-doctypes.marketing</label>
+			</labels>
+			<templates>
+				<template mode="any">/layouts/marketing_widget_layout_template.xhtml
+				</template>
+			</templates>
+			<rows>
+				<row>
+					<properties mode="any">
+						<property name="nxl_colspan_0">2</property>
+					</properties>
+					<widget>campaignDescription</widget>
+				</row>
+				<row>
+					<properties mode="any">
+						<property name="nxl_colspan_0">2</property>
+					</properties>
+					<widget>material</widget>
+				</row>
+				<row>
+					<properties mode="any">
+						<property name="nxl_colspan_0">2</property>
+					</properties>
+					<widget>quantity</widget>
+				</row>
+			</rows>
+			<widget name="campaignDescription" type="textarea">
+				<labels>
+					<label mode="any">label.marketing.campaignDescription</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>marketing:campaignDescription</field>
+				</fields>
+			</widget>
+			<widget name="material" type="text">
+				<labels>
+					<label mode="any">label.marketing.material</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>marketing:material</field>
+				</fields>
+			</widget>
+			<widget name="quantity" type="text">
+				<labels>
+					<label mode="any">label.marketing.quantity</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>marketing:quantity</field>
+				</fields>
+			</widget>
+		</layout>
+
+	</extension>
+
+</component>
+		

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component
+	name="org.athento.nuxeo.athento-nx-common-doctypes.formlayout-invoicing"
+	version="1.0.0">
+	<require>org.nuxeo.runtime.started</require>
+
+	<extension target="org.nuxeo.ecm.platform.forms.layout.WebLayoutManager"
+		point="layouts">
+
+		<layout name="layout@formlayout-invoicing">
+			<labels>
+				<label>label.athento-nx-common-doctypes.invoicing</label>
+			</labels>
+			<templates>
+				<template mode="any">/layouts/invoicing_widget_layout_template.xhtml
+				</template>
+			</templates>
+			<rows>
+				<row>
+					<properties mode="any">
+						<property name="nxl_colspan_0">1</property>
+						<property name="nxl_colspan_1">1</property>
+					</properties>
+					<widget>budget</widget>
+					<widget>imputation</widget>
+				</row>
+				<row>
+					<properties mode="any">
+						<property name="nxl_colspan_0">1</property>
+						<property name="nxl_colspan_1">1</property>
+					</properties>
+					<widget>budgetBonus</widget>
+					<widget>region</widget>
+				</row>
+				<row>
+					<properties mode="any">
+						<property name="nxl_colspan_0">1</property>
+						<property name="nxl_colspan_1">1</property>
+					</properties>
+					<widget>operativeBudget</widget>
+					<widget>invoiceComments</widget>
+				</row>
+			</rows>
+			<widget name="budget" type="double">
+				<labels>
+					<label mode="any">label.invoicing.budget</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>invoicing:budget</field>
+				</fields>
+				<properties>
+					<property name="required">true</property>
+				</properties>
+			</widget>
+			<widget name="budgetBonus" type="double">
+				<labels>
+					<label mode="any">label.invoicing.budgetBonus</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>invoicing:budgetBonus</field>
+				</fields>
+			</widget>
+			<widget name="imputation" type="selectOneDirectory">
+				<labels>
+					<label mode="any">label.invoicing.imputation</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>invoicing:imputation</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="directoryName">mk_imputation</property>
+					<property name="displayIdAndLabel">false</property>
+					<property name="ordering">ordering</property>
+					<property name="localize">true</property>
+					<property name="required">true</property>
+				</properties>
+			</widget>
+			<widget name="invoiceComments" type="text">
+				<labels>
+					<label mode="any">label.invoicing.invoiceComments</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>invoicing:invoiceComments</field>
+				</fields>
+			</widget>
+			<widget name="operativeBudget" type="double">
+				<labels>
+					<label mode="any">label.invoicing.operativeBudget</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>invoicing:operativeBudget</field>
+				</fields>
+				<widgetModes>
+					<mode value="edit">hidden</mode>
+					<mode value="create">hidden</mode>
+				</widgetModes>
+			</widget>
+			<widget name="region" type="chainedDirectory">
+				<labels>
+					<label mode="any">label.invoicing.region</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>invoicing:region</field>
+					<field>invoicing:office</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="localize">true</property>
+					<property name="parentDirectory">org_high</property>
+					<property name="ordering">label</property>
+					<property name="on2rows">true</property>
+					<property name="childDirectory">org_low</property>
+					<property name="allowBranchSelection">true</property>
+					<property name="required">true</property>
+				</properties>
+				<widgetModes>
+					<mode value="edit">view</mode>
+				</widgetModes>
+			</widget>
+		</layout>
+
+	</extension>
+
+</component>
+		

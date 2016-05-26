@@ -36,11 +36,31 @@
 		</xs:sequence>
 	</xs:complexType>
 	
+	<!-- Activity. Typically is a subcategory, given the Category is used to define the scope -->
+	<xs:element name="activity" type="xs:string" />
+	<!-- Project Type. Categorizes the project at high level: Marketing, IT, Development, etc  -->
+	<xs:element name="category" type="xs:string" />
+	<!-- End planned date for the project -->
+	<xs:element name="endPlannedDate" type="xs:date" />
+	<!-- End real date for the project -->
+	<xs:element name="endRealDate" type="xs:date" />
 	<!-- Project ID -->
 	<xs:element name="projectid" type="xs:string" />
 	<!-- Project Complete Name -->
 	<xs:element name="projectName" type="xs:string" />
 	<!-- Project Manager User ID -->
 	<xs:element name="projectUserid" type="xs:string" />
+	<!-- Providers, given the project involves one or many providers -->
+	<xs:element name="providers" type="nxs:stringList" />
+	<!-- The user or group that creates for the first time the project and asks for viability -->
+	<xs:element name="solicitantid" type="xs:string" />	
+	<!-- The ID given for the project when it's not yet approved (as opposed to Project ID, already approved)-->
+	<xs:element name="initialid" type="xs:string" />
+	<!-- Start planned date for the project -->
+	<xs:element name="startPlannedDate" type="xs:date" />
+	<!-- Start real date for the project -->
+	<xs:element name="startRealDate" type="xs:date" />
+	<!-- Summary of the project. Typically one line -->
+	<xs:element name="summary" type="xs:string" />
 
 </xs:schema>
