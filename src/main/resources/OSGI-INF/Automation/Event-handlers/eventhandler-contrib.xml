@@ -22,6 +22,15 @@
 				<attribute>Regular Document</attribute>
 			</filters>
 		</handler>
+		
+		<handler chainId="projectFile-calculateProperties">
+			<event>aboutToCreate</event>
+			<event>beforeDocumentModification</event>
+			<filters>
+				<doctype>ProjectFile</doctype>
+				<attribute>Regular Document</attribute>
+			</filters>
+		</handler>
 
 	</extension>
 

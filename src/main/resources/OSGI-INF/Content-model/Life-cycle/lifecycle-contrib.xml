@@ -39,6 +39,9 @@
 				<transition name="to_Closed" destinationState="Closed">
 					<description>File Closed</description>
 				</transition>
+				<transition name="to_Draft" destinationState="Draft">
+					<description>Back to Draft</description>
+				</transition>
 			</transitions>
 			<states>
 				<state name="Draft"

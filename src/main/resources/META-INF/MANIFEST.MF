@@ -36,6 +36,8 @@ Nuxeo-Component: OSGI-INF/Automation/User-actions/actions-contrib.xml,
  OSGI-INF/Listing-Views/Tabs/tablayout-contrib.xml,
  OSGI-INF/Listing-Views/Tabs/tabs-action-contrib.xml,
  OSGI-INF/Vocabularies/vocabularies-contrib.xml,
+ OSGI-INF/Workflows/workflow-doctype-contrib.xml,
+ OSGI-INF/Workflows/workflow-layout-contrib.xml,
  OSGI-INF/Workflows/workflow-contrib.xml
 Created-By: Athento
 
