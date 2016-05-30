@@ -15,7 +15,7 @@
 			</filters>
 		</handler>
 		
-		<handler chainId="projectFile-assignCategory">
+		<handler chainId="projectFile-prePopulateInCreation">
 			<event>emptyDocumentModelCreated</event>
 			<filters>
 				<doctype>ProjectFile</doctype>

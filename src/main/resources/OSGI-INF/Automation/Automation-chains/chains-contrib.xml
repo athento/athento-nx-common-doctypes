@@ -108,11 +108,26 @@
 		<chain id="projectFile-assignCategory">
 			<documentation>Automatically select the category for the project
 			</documentation>
-			<operation id="Context.FetchDocument" />
 			<operation id="Document.SetProperty">
 				<param type="string" name="xpath">projectFile:category</param>
 				<param type="boolean" name="save">false</param>
 				<param type="serializable" name="value">01
+				</param>
+			</operation>
+		</chain>
+
+		<chain id="projectFile-assignCreator">
+			<documentation>Automatically assign creator as solicitant id
+			</documentation>
+			<operation id="Context.SetVar">
+				<param type="string" name="name">user_var</param>
+				<param type="object" name="value">expr:@{currentUser.name}
+				</param>
+			</operation>
+			<operation id="Document.SetProperty">
+				<param type="string" name="xpath">projectFile:solicitantid</param>
+				<param type="boolean" name="save">false</param>
+				<param type="serializable" name="value">expr:user_var
 				</param>
 			</operation>
 		</chain>
@@ -152,6 +167,21 @@
 				</param>
 			</operation>
 		</chain>
+
+		<chain id="projectFile-prePopulateInCreation">
+			<documentation>Automatically populates creation form
+			</documentation>
+			<operation id="Context.FetchDocument" />
+			<operation id="Context.RunOperation">
+				<param type="string" name="id">projectFile-assignCategory</param>
+				<param type="boolean" name="isolate">false</param>
+			</operation>
+			<operation id="Context.RunOperation">
+				<param type="string" name="id">projectFile-assignCreator</param>
+				<param type="boolean" name="isolate">false</param>
+			</operation>
+		</chain>
+		
 
 		<!-- ***************************************************************** -->
 		<!-- ****** Workflow chains used in Project Validation workflow ****** -->
