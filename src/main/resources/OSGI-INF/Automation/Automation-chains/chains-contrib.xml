@@ -254,22 +254,22 @@
 			</operation>
 			<operation id="Context.SetVar">
 				<param type="string" name="name">firstLevel_var</param>
-				<param type="object" name="value">expr:@{"group:Level40_"+activity_var+"_"+WorkflowVariables["suffix_office"]}
-				</param>
-			</operation>
-			<operation id="Context.SetVar">
-				<param type="string" name="name">secondLevel_var</param>
 				<param type="object" name="value">expr:@{"group:Level35_"+category_var+"_"+WorkflowVariables["suffix_office"]}
 				</param>
 			</operation>
 			<operation id="Context.SetVar">
-				<param type="string" name="name">thirdLevel_var</param>
+				<param type="string" name="name">secondLevel_var</param>
 				<param type="object" name="value">expr:@{"group:Level25_"+WorkflowVariables["suffix_office"]}
 				</param>
 			</operation>
 			<operation id="Context.SetVar">
-				<param type="string" name="name">fourthLevel_var</param>
+				<param type="string" name="name">thirdLevel_var</param>
 				<param type="object" name="value">expr:@{"group:Level20_"+category_var}
+				</param>
+			</operation>
+			<operation id="Context.SetVar">
+				<param type="string" name="name">fourthLevel_var</param>
+				<param type="object" name="value">expr:@{"group:Level15"}
 				</param>
 			</operation>
 			<operation id="Context.SetVar">
