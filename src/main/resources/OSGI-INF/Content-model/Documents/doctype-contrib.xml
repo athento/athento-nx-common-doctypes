@@ -66,8 +66,8 @@
 		<type id="ProjectFile">
 			<label>label.athento-nx-common-doctypes.ProjectFile</label>
 			<translated>true</translated>
-			<icon>/icons/workspace_100.png</icon>
-			<bigIcon>/icons/workspace_100.png</bigIcon>
+			<icon>/img/namedFolder_16.png</icon>
+			<bigIcon>/img/namedFolder_100.png</bigIcon>
 			<description>label.athento-nx-common-doctypes.ProjectFile.description
 			</description>
 			<category>label.athento-nx-common-doctypes.managementCategory

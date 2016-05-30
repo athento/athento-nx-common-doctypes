@@ -36,6 +36,8 @@
 		</xs:sequence>
 	</xs:complexType>
 	
+	<!-- Already Expended, against budget -->
+	<xs:element name="alreadyExpended" type="xs:double" default="0.0"/>
 	<!-- Budget for the project (no bonus)-->
 	<xs:element name="budget" type="xs:double" />
 	<!-- Budget originally requested -->
