@@ -23,15 +23,24 @@
 						<property name="nxl_colspan_1">1</property>
 					</properties>
 					<widget>projectid</widget>
-					<widget>projectUserid</widget>
-				</row>
-				<row>
-					<properties mode="any">
-						<property name="nxl_colspan_0">2</property>
-					</properties>
-					<widget>projectName</widget>
+					<widget>category</widget>
 				</row>
 			</rows>
+			<widget name="category" type="selectOneDirectory">
+				<labels>
+					<label mode="any">label.projectFile.category</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>projectFile:category</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="directoryName">mk_category</property>
+					<property name="displayIdAndLabel">false</property>
+					<property name="ordering">ordering</property>
+					<property name="localize">true</property>
+				</properties>
+			</widget>
 			<widget name="projectid" type="text">
 				<labels>
 					<label mode="any">label.projectFile.projectid</label>
@@ -41,24 +50,7 @@
 					<field>projectFile:projectid</field>
 				</fields>
 			</widget>
-			<widget name="projectUserid" type="text">
-				<labels>
-					<label mode="any">label.projectFile.projectUserid</label>
-				</labels>
-				<translated>true</translated>
-				<fields>
-					<field>projectFile:projectUserid</field>
-				</fields>
-			</widget>
-			<widget name="projectName" type="text">
-				<labels>
-					<label mode="any">label.projectFile.projectName</label>
-				</labels>
-				<translated>true</translated>
-				<fields>
-					<field>projectFile:projectName</field>
-				</fields>
-			</widget>
+			
 		</layout>
 
 	</extension>
