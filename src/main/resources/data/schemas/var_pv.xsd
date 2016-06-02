@@ -37,6 +37,7 @@
 	</xs:complexType>
 	<xs:element name="First_needed" type="xs:boolean" />
 	<xs:element name="Last_needed" type="xs:boolean" />
+	<xs:element name="manualLastNeeded" type="xs:boolean" />
 	<xs:element name="suffix_region" type="xs:string" />
 	<xs:element name="suffix_office" type="xs:string" />
 	<xs:element name="firstLevel" type="xs:string" />

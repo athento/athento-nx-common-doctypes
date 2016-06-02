@@ -108,11 +108,26 @@
 		<chain id="projectFile-assignCategory">
 			<documentation>Automatically select the category for the project
 			</documentation>
-			<operation id="Context.FetchDocument" />
 			<operation id="Document.SetProperty">
 				<param type="string" name="xpath">projectFile:category</param>
 				<param type="boolean" name="save">false</param>
 				<param type="serializable" name="value">01
+				</param>
+			</operation>
+		</chain>
+
+		<chain id="projectFile-assignCreator">
+			<documentation>Automatically assign creator as solicitant id
+			</documentation>
+			<operation id="Context.SetVar">
+				<param type="string" name="name">user_var</param>
+				<param type="object" name="value">expr:@{currentUser.name}
+				</param>
+			</operation>
+			<operation id="Document.SetProperty">
+				<param type="string" name="xpath">projectFile:solicitantid</param>
+				<param type="boolean" name="save">false</param>
+				<param type="serializable" name="value">expr:user_var
 				</param>
 			</operation>
 		</chain>
@@ -141,7 +156,18 @@
 				</param>
 			</operation>
 			<operation id="Context.SetVar">
+				<param type="string" name="name">remainingBudget_var</param>
+				<param type="object" name="value">expr:Document["invoicing:remainingBudget"]
+					== empty ? 0 : Document["invoicing:remainingBudget"]
+				</param>
+			</operation>
+			<operation id="Context.SetVar">
 				<param type="string" name="name">operativeBudget_var</param>
+				<param type="object" name="value">expr:budget_var - budgetBonus_var
+				</param>
+			</operation>
+			<operation id="Context.SetVar">
+				<param type="string" name="name">remainingBudget_var</param>
 				<param type="object" name="value">expr:budget_var - budgetBonus_var - alreadyExpended_var
 				</param>
 			</operation>
@@ -151,7 +177,28 @@
 				<param type="serializable" name="value">expr:operativeBudget_var
 				</param>
 			</operation>
+			<operation id="Document.SetProperty">
+				<param type="string" name="xpath">invoicing:remainingBudget</param>
+				<param type="boolean" name="save">false</param>
+				<param type="serializable" name="value">expr:remainingBudget_var
+				</param>
+			</operation>
 		</chain>
+
+		<chain id="projectFile-prePopulateInCreation">
+			<documentation>Automatically populates creation form
+			</documentation>
+			<operation id="Context.FetchDocument" />
+			<operation id="Context.RunOperation">
+				<param type="string" name="id">projectFile-assignCategory</param>
+				<param type="boolean" name="isolate">false</param>
+			</operation>
+			<operation id="Context.RunOperation">
+				<param type="string" name="id">projectFile-assignCreator</param>
+				<param type="boolean" name="isolate">false</param>
+			</operation>
+		</chain>
+		
 
 		<!-- ***************************************************************** -->
 		<!-- ****** Workflow chains used in Project Validation workflow ****** -->
@@ -224,22 +271,22 @@
 			</operation>
 			<operation id="Context.SetVar">
 				<param type="string" name="name">firstLevel_var</param>
-				<param type="object" name="value">expr:@{"group:Level40_"+activity_var+"_"+WorkflowVariables["suffix_office"]}
-				</param>
-			</operation>
-			<operation id="Context.SetVar">
-				<param type="string" name="name">secondLevel_var</param>
 				<param type="object" name="value">expr:@{"group:Level35_"+category_var+"_"+WorkflowVariables["suffix_office"]}
 				</param>
 			</operation>
 			<operation id="Context.SetVar">
-				<param type="string" name="name">thirdLevel_var</param>
+				<param type="string" name="name">secondLevel_var</param>
 				<param type="object" name="value">expr:@{"group:Level25_"+WorkflowVariables["suffix_office"]}
 				</param>
 			</operation>
 			<operation id="Context.SetVar">
-				<param type="string" name="name">fourthLevel_var</param>
+				<param type="string" name="name">thirdLevel_var</param>
 				<param type="object" name="value">expr:@{"group:Level20_"+category_var}
+				</param>
+			</operation>
+			<operation id="Context.SetVar">
+				<param type="string" name="name">fourthLevel_var</param>
+				<param type="object" name="value">expr:@{"group:Level15"}
 				</param>
 			</operation>
 			<operation id="Context.SetVar">

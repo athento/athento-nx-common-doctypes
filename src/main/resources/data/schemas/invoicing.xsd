@@ -42,10 +42,10 @@
 	<xs:element name="budget" type="xs:double" />
 	<!-- Budget originally requested -->
 	<xs:element name="budgetRequested" type="xs:double" />
-	<!-- Payments against the budget. Typically every invoice that takes resources from the budget -->
-	<xs:element name="payments" type="xs:double" />
 	<!-- Budget minus payments -->
 	<xs:element name="balance" type="xs:double" />
+	<!-- Budget Bonus Dispatcher -->
+	<xs:element name="bonusDispatcher" type="xs:double" />
 	<!-- If for any reason, budget can be exceeded at some extend, bonus is where to reflect it -->
 	<xs:element name="budgetBonus" type="xs:double" />
 	<!-- Invoicing Comments -->
@@ -56,8 +56,12 @@
 	<xs:element name="office" type="xs:string" />
 	<!-- The budget is what it is, but given you can have budgetBonus, this operative budget will reflect the sum of both -->
 	<xs:element name="operativeBudget" type="xs:double" />
+	<!-- Payments against the budget. Typically every invoice that takes resources from the budget -->
+	<xs:element name="payments" type="xs:double" />
 	<!-- Region -->
 	<xs:element name="region" type="xs:string" />
+	<!--  remainingBudget -->
+	<xs:element name="remainingBudget" type="xs:double" />
 	<!-- Society -->
 	<xs:element name="society" type="xs:string" />
 	
