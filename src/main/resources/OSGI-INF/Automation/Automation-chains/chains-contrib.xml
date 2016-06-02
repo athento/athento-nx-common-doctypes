@@ -156,7 +156,18 @@
 				</param>
 			</operation>
 			<operation id="Context.SetVar">
+				<param type="string" name="name">remainingBudget_var</param>
+				<param type="object" name="value">expr:Document["invoicing:remainingBudget"]
+					== empty ? 0 : Document["invoicing:remainingBudget"]
+				</param>
+			</operation>
+			<operation id="Context.SetVar">
 				<param type="string" name="name">operativeBudget_var</param>
+				<param type="object" name="value">expr:budget_var - budgetBonus_var
+				</param>
+			</operation>
+			<operation id="Context.SetVar">
+				<param type="string" name="name">remainingBudget_var</param>
 				<param type="object" name="value">expr:budget_var - budgetBonus_var - alreadyExpended_var
 				</param>
 			</operation>
@@ -164,6 +175,12 @@
 				<param type="string" name="xpath">invoicing:operativeBudget</param>
 				<param type="boolean" name="save">false</param>
 				<param type="serializable" name="value">expr:operativeBudget_var
+				</param>
+			</operation>
+			<operation id="Document.SetProperty">
+				<param type="string" name="xpath">invoicing:remainingBudget</param>
+				<param type="boolean" name="save">false</param>
+				<param type="serializable" name="value">expr:remainingBudget_var
 				</param>
 			</operation>
 		</chain>

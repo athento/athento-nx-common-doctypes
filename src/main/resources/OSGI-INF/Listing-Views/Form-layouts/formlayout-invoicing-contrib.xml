@@ -32,6 +32,7 @@
 					</properties>
 					<widget>budgetBonus</widget>
 					<widget>region</widget>
+					
 				</row>
 				<row>
 					<properties mode="any">
@@ -41,7 +42,30 @@
 					<widget>operativeBudget</widget>
 					<widget>invoiceComments</widget>
 				</row>
-			</rows>
+				<row>
+					<properties mode="any">
+						<property name="nxl_colspan_0">1</property>
+						<property name="nxl_colspan_1">1</property>
+					</properties>
+					<widget>remainingBudget</widget>
+				</row>
+				<row>
+					<properties mode="any">
+						<property name="nxl_colspan_0">1</property>
+						<property name="nxl_colspan_1">1</property>
+					</properties>
+					<widget>bonusDispatcher</widget>
+				</row>
+			</rows>			
+			<widget name="bonusDispatcher" type="text">
+				<labels>
+					<label mode="any">label.invoicing.bonusDispatcher</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>invoicing:bonusDispatcher</field>
+				</fields>
+			</widget>
 			<widget name="budget" type="double">
 				<labels>
 					<label mode="any">label.invoicing.budget</label>
@@ -52,6 +76,9 @@
 				</fields>
 				<properties>
 					<property name="required">true</property>
+				</properties>
+				<properties widgetMode="any">
+					<property name="styleClass">bold</property>
 				</properties>
 			</widget>
 			<widget name="budgetBonus" type="double">
@@ -123,6 +150,20 @@
 					<mode value="edit">view</mode>
 				</widgetModes>
 			</widget>
+			<widget name="remainingBudget" type="double">
+				<labels>
+					<label mode="any">label.invoicing.remainingBudget</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>invoicing:remainingBudget</field>
+				</fields>
+				<widgetModes>
+					<mode value="edit">hidden</mode>
+					<mode value="create">hidden</mode>
+				</widgetModes>
+			</widget>
+			
 		</layout>
 
 	</extension>
