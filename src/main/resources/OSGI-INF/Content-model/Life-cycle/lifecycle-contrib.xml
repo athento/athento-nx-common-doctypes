@@ -10,7 +10,7 @@
 			<type name="UserFile">default</type>
 		</types>
 		<types>
-			<type name="ProjectFile">ProjectFileLC</type>
+			<type name="ProjectFile">commonLC</type>
 		</types>
 		<types>
 			<type name="ProjectFolder">default</type>
@@ -21,7 +21,7 @@
 	<extension target="org.nuxeo.ecm.core.lifecycle.LifeCycleService"
 		point="lifecycle">
 
-		<lifecycle name="ProjectFileLC" defaultInitial="Draft">
+		<lifecycle name="commonLC" defaultInitial="Draft">
 			<transitions>
 				<transition name="delete" destinationState="deleted">
 					<description>Delete a file</description>

@@ -45,7 +45,7 @@
 	<!-- Budget minus payments -->
 	<xs:element name="balance" type="xs:double" />
 	<!-- Budget Bonus Dispatcher -->
-	<xs:element name="bonusDispatcher" type="xs:double" />
+	<xs:element name="bonusProvider" type="xs:string" />
 	<!-- If for any reason, budget can be exceeded at some extend, bonus is where to reflect it -->
 	<xs:element name="budgetBonus" type="xs:double" />
 	<!-- Invoicing Comments -->

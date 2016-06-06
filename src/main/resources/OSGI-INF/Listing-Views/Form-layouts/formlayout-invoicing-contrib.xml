@@ -45,25 +45,23 @@
 				<row>
 					<properties mode="any">
 						<property name="nxl_colspan_0">1</property>
-						<property name="nxl_colspan_1">1</property>
 					</properties>
 					<widget>remainingBudget</widget>
 				</row>
 				<row>
 					<properties mode="any">
 						<property name="nxl_colspan_0">1</property>
-						<property name="nxl_colspan_1">1</property>
 					</properties>
-					<widget>bonusDispatcher</widget>
+					<widget>bonusProvider</widget>
 				</row>
 			</rows>			
-			<widget name="bonusDispatcher" type="text">
+			<widget name="bonusProvider" type="text">
 				<labels>
-					<label mode="any">label.invoicing.bonusDispatcher</label>
+					<label mode="any">label.invoicing.bonusProvider</label>
 				</labels>
 				<translated>true</translated>
 				<fields>
-					<field>invoicing:bonusDispatcher</field>
+					<field>invoicing:bonusProvider</field>
 				</fields>
 			</widget>
 			<widget name="budget" type="double">
