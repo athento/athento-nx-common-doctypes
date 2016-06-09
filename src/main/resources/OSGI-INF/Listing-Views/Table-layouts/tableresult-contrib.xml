@@ -103,6 +103,21 @@
 					</properties>
 					<widget>activity</widget>
 				</column>
+				<column name="budget">
+					<properties mode="any">
+						<property name="useFirstWidgetLabelAsColumnHeader">true</property>
+						<property name="columnStyleClass"></property>
+						<property name="label">label.invoicing.budget</property>
+						<property name="sortPropertyName">invoicing:budget</property>
+					</properties>
+					<properties mode="edit_sort_infos">
+						<property name="showInSortInfoSelection">true</property>
+					</properties>
+					<properties mode="edit_sort_infos_map">
+						<property name="showInSortInfoSelection">true</property>
+					</properties>
+					<widget>budget</widget>
+				</column>
 				<column name="operativeBudget">
 					<properties mode="any">
 						<property name="useFirstWidgetLabelAsColumnHeader">true</property>
@@ -118,6 +133,21 @@
 					</properties>
 					<widget>operativeBudget</widget>
 				</column>
+				<column name="remainingBudget">
+					<properties mode="any">
+						<property name="useFirstWidgetLabelAsColumnHeader">true</property>
+						<property name="columnStyleClass"></property>
+						<property name="label">label.invoicing.remainingBudget</property>
+						<property name="sortPropertyName">invoicing:remainingBudget</property>
+					</properties>
+					<properties mode="edit_sort_infos">
+						<property name="showInSortInfoSelection">true</property>
+					</properties>
+					<properties mode="edit_sort_infos_map">
+						<property name="showInSortInfoSelection">true</property>
+					</properties>
+					<widget>remainingBudget</widget>
+				</column>
 				<column name="lifecycle">
 					<properties mode="any">
 						<property name="useFirstWidgetLabelAsColumnHeader">true</property>
@@ -131,12 +161,12 @@
 					</properties>
 					<widget>listing_lifecycle</widget>
 				</column>
-				<column name="summary">
+				<column name="budgetBonus">
 					<properties mode="any">
 						<property name="useFirstWidgetLabelAsColumnHeader">true</property>
 						<property name="columnStyleClass"></property>
-						<property name="label">label.projectFile.summary</property>
-						<property name="sortPropertyName">projectFile:summary</property>
+						<property name="label">label.invoicing.budgetBonus</property>
+						<property name="sortPropertyName">invoicing:budgetBonus</property>
 					</properties>
 					<properties mode="edit_sort_infos">
 						<property name="showInSortInfoSelection">true</property>
@@ -144,7 +174,7 @@
 					<properties mode="edit_sort_infos_map">
 						<property name="showInSortInfoSelection">true</property>
 					</properties>
-					<widget>summary</widget>
+					<widget>budgetBonus</widget>
 				</column>
 				
 				<!-- Next ones are not selected by default -->
@@ -200,6 +230,21 @@
 					</properties>
 					<widget>region</widget>
 				</column>
+				<column name="summary" selectedByDefault="false">
+					<properties mode="any">
+						<property name="useFirstWidgetLabelAsColumnHeader">true</property>
+						<property name="columnStyleClass"></property>
+						<property name="label">label.projectFile.summary</property>
+						<property name="sortPropertyName">projectFile:summary</property>
+					</properties>
+					<properties mode="edit_sort_infos">
+						<property name="showInSortInfoSelection">true</property>
+					</properties>
+					<properties mode="edit_sort_infos_map">
+						<property name="showInSortInfoSelection">true</property>
+					</properties>
+					<widget>summary</widget>
+				</column>
 			</columns>
 			<widget name="activity" type="selectOneDirectory">
 				<labels>
@@ -223,6 +268,15 @@
 				<translated>true</translated>
 				<fields>
 					<field>data['invoicing']['budget']</field>
+				</fields>
+			</widget>
+			<widget name="budgetBonus" type="double">
+				<labels>
+					<label mode="any">label.invoicing.budgetBonus</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>data['invoicing']['budgetBonus']</field>
 				</fields>
 			</widget>
 			<widget name="listing_title_link" type="listing_title_link">
@@ -263,6 +317,15 @@
 					<property name="on2rows">false</property>
 					<property name="childDirectory">org_low</property>
 				</properties>
+			</widget>
+			<widget name="remainingBudget" type="double">
+				<labels>
+					<label mode="any">label.invoicing.remainingBudget</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>data['invoicing']['remainingBudget']</field>
+				</fields>
 			</widget>
 			<widget name="summary" type="double">
 				<labels>
