@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>athento-nx-common-doctypes</groupId>
 	<artifactId>athento-nx-common-doctypes</artifactId>
-	<version>1.1</version>
+	<version>1.2-SNAPSHOT</version>
 	<name>Athento NX Common Doctypes</name>
 	<description>Athento NX Common Doctypes</description>
 
@@ -156,5 +156,24 @@
 		</pluginRepository>
 
 	</pluginRepositories>
+
+	<distributionManagement>
+
+		<repository>
+			<id>athento-public</id>
+			<name>Athento Public</name>
+			<url>http://maven2.yerbabuena.es/artifactory/athento-public</url>
+			<layout>default</layout>
+		</repository>
+
+		<snapshotRepository>
+			<uniqueVersion>true</uniqueVersion>
+			<id>athento-public-snapshot</id>
+			<name>Athento Public Snapshot</name>
+			<url>http://maven2.yerbabuena.es/artifactory/athento-public-snapshot</url>
+			<layout>default</layout>
+		</snapshotRepository>
+
+	</distributionManagement>
 
 </project>

@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<component
-	name="org.athento.nuxeo.athento-nx-common-doctypes.actions-cv"
+<component name="org.athento.nuxeo.athento-nx-common-doctypes.actions-cv"
 	version="1.0.0">
 	<require>org.nuxeo.runtime.started</require>
 
 	<extension target="org.nuxeo.ecm.platform.actions.ActionService"
 		point="actions">
-		
+
+		<action id="CreateNewProject" label="label.athento-nx-common-doctypes.CreateNewProject"
+			enabled="true" order="1" type="link" immediate="false"
+			link="#{operationActionBean.doOperation('CreateNewProject')}">
+			<category>SUBVIEW_UPPER_LIST</category>
+			<filter-id>filter@CreateNewProject</filter-id>
+		</action>
+
 	</extension>
 
 </component>	

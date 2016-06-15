@@ -13,25 +13,104 @@
 				<label>label.athento-nx-common-doctypes.ProjectFile</label>
 			</labels>
 			<templates>
-				<template mode="any">/layouts/projectFileHeading_widget_layout_template.xhtml
+				<template mode="any">/layouts/projectFile_widget_layout_template.xhtml
 				</template>
 			</templates>
 			<rows>
 				<row>
 					<properties mode="any">
-						<property name="nxl_colspan_0">1</property>
-						<property name="nxl_colspan_1">1</property>
+						<property name="nxl_colspan_0">2</property>
 					</properties>
-					<widget>projectid</widget>
-					<widget>projectUserid</widget>
+					<widget>category</widget>
 				</row>
 				<row>
 					<properties mode="any">
 						<property name="nxl_colspan_0">2</property>
 					</properties>
-					<widget>projectName</widget>
+					<widget>projectid</widget>
+				</row>
+				<row>
+					<properties mode="any">
+						<property name="nxl_colspan_0">2</property>
+					</properties>
+					<widget>activity</widget>
+				</row>
+				<row>
+					<properties mode="any">
+						<property name="nxl_colspan_0">2</property>
+					</properties>
+					<widget>summary</widget>
+				</row>
+				<row>
+					<properties mode="any">
+						<property name="nxl_colspan_0">2</property>
+					</properties>
+					<widget>startPlannedDate</widget>
+				</row>
+				<row>
+					<properties mode="any">
+						<property name="nxl_colspan_0">2</property>
+					</properties>
+					<widget>solicitantid</widget>
+				</row>
+				<row>
+					<properties mode="any">
+						<property name="nxl_colspan_0">2</property>
+					</properties>
+					<widget>initialid</widget>
+				</row>
+				<row>
+					<properties mode="any">
+						<property name="nxl_colspan_0">2</property>
+					</properties>
+					<widget>providers</widget>
 				</row>
 			</rows>
+			<widget name="activity" type="selectOneDirectory">
+				<labels>
+					<label mode="any">label.projectFile.activity</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>projectFile:activity</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="directoryName">mk_activity</property>
+					<property name="displayIdAndLabel">false</property>
+					<property name="ordering">ordering</property>
+					<property name="localize">true</property>
+					<property name="required">true</property>
+				</properties>
+			</widget>
+			<widget name="category" type="selectOneDirectory">
+				<labels>
+					<label mode="any">label.projectFile.category</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>projectFile:category</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="directoryName">mk_category</property>
+					<property name="displayIdAndLabel">false</property>
+					<property name="ordering">ordering</property>
+					<property name="localize">true</property>
+					<property name="styleClass">bold</property>
+				</properties>
+				<widgetModes>
+					<mode value="edit">view</mode>
+					<mode value="create">view</mode>
+				</widgetModes>
+			</widget>
+			<widget name="initialid" type="text">
+				<labels>
+					<label mode="any">label.projectFile.initialid</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>projectFile:initialid</field>
+				</fields>
+			</widget>
 			<widget name="projectid" type="text">
 				<labels>
 					<label mode="any">label.projectFile.projectid</label>
@@ -40,24 +119,66 @@
 				<fields>
 					<field>projectFile:projectid</field>
 				</fields>
+				<widgetModes>
+					<mode value="edit">view</mode>
+					<mode value="create">hidden</mode>
+				</widgetModes>
 			</widget>
-			<widget name="projectUserid" type="text">
+			<widget name="providers" type="list">
 				<labels>
-					<label mode="any">label.projectFile.projectUserid</label>
+					<label mode="any">label.projectFile.providers</label>
 				</labels>
 				<translated>true</translated>
 				<fields>
-					<field>projectFile:projectUserid</field>
+					<field>projectFile:providers</field>
 				</fields>
+				<subWidgets>
+					<widget name="listItem" type="text">
+						<fields>
+							<field></field>
+						</fields>
+						<labels>
+							<label mode="any"></label>
+						</labels>
+					</widget>
+				</subWidgets>
 			</widget>
-			<widget name="projectName" type="text">
+			<widget name="solicitantid" type="text">
 				<labels>
-					<label mode="any">label.projectFile.projectName</label>
+					<label mode="any">label.projectFile.solicitantid</label>
 				</labels>
 				<translated>true</translated>
 				<fields>
-					<field>projectFile:projectName</field>
+					<field>projectFile:solicitantid</field>
 				</fields>
+				<properties>
+					<property name="required">true</property>
+				</properties>
+			</widget>
+			<widget name="startPlannedDate" type="datetime">
+				<labels>
+					<label mode="any">label.projectFile.startPlannedDate</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>projectFile:startPlannedDate</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="format">#{nxu:basicDateFormatter()}
+					</property>
+				</properties>
+			</widget>
+			<widget name="summary" type="text">
+				<labels>
+					<label mode="any">label.projectFile.summary</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>projectFile:summary</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="required">true</property>
+				</properties>
 			</widget>
 		</layout>
 

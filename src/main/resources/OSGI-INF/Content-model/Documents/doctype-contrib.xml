@@ -8,10 +8,8 @@
 		point="doctype">
 
 		<doctype name="UserFile" extends="File" append="true">
-			<schema name="userFile" />
 			<schema name="projectFile" />
-			<schema name="common" />
-			<schema name="dublincore" />
+			<schema name="userFile" />
 			<facet name="HasRelatedText" />
 			<facet name="Versionable" />
 			<facet name="Commentable" />
@@ -20,14 +18,20 @@
 		</doctype>
 
 		<doctype name="ProjectFile" extends="File" append="true">
-			<schema name="userFile" />
+			<schema name="invoicing" />
+			<schema name="marketing" />
 			<schema name="projectFile" />
-			<schema name="common" />
-			<schema name="dublincore" />
+			<schema name="userFile" />
+			<schema name="validation" />
 			<facet name="HasRelatedText" />
 			<facet name="Versionable" />
 			<facet name="Commentable" />
 			<facet name="Folderish" />
+			<prefetch>dc:title, dc:modified, uid.uid</prefetch>
+		</doctype>
+
+		<doctype name="ProjectFolder" extends="Workspace" append="true">
+			<schema name="projectFile" />
 			<prefetch>dc:title, dc:modified, uid.uid</prefetch>
 		</doctype>
 
@@ -62,29 +66,61 @@
 		<type id="ProjectFile">
 			<label>label.athento-nx-common-doctypes.ProjectFile</label>
 			<translated>true</translated>
-			<icon>/icons/workspace_100.png</icon>
-			<bigIcon>/icons/workspace_100.png</bigIcon>
+			<icon>/img/namedFolder_16.png</icon>
+			<bigIcon>/img/namedFolder_100.png</bigIcon>
 			<description>label.athento-nx-common-doctypes.ProjectFile.description
 			</description>
 			<category>label.athento-nx-common-doctypes.managementCategory
 			</category>
 			<default-view>view_documents</default-view>
 			<layouts mode="create">
-				<layout>heading</layout>
 				<layout>layout@formlayout-projectFile</layout>
+				<layout>layout@formlayout-marketing</layout>
+				<layout>layout@formlayout-invoicing</layout>
+			</layouts>
+			<layouts mode="edit">
+				<layout>layout@formlayout-projectFile</layout>
+				<layout>layout@formlayout-marketing</layout>
+				<layout>layout@formlayout-invoicing</layout>
+			</layouts>
+			<layouts mode="view">
+				<layout>layout@formlayout-validation</layout>
+				<layout>layout@formlayout-projectFile</layout>
+				<layout>layout@formlayout-marketing</layout>
+				<layout>layout@formlayout-invoicing</layout>
+			</layouts>
+		</type>
+
+		<type id="ProjectFolder">
+			<label>label.athento-nx-common-doctypes.ProjectFolder</label>
+			<translated>true</translated>
+			<icon>/icons/workspace_100.png</icon>
+			<bigIcon>/icons/workspace_100.png</bigIcon>
+			<description>label.athento-nx-common-doctypes.ProjectFolder.description
+			</description>
+			<category>label.athento-nx-common-doctypes.managementCategory
+			</category>
+			<default-view>view_documents</default-view>
+			<layouts mode="create">
+				<layout>heading</layout>
+				<layout>layout@formlayout-projectFolder</layout>
 			</layouts>
 			<layouts mode="edit">
 				<layout>heading</layout>
-				<layout>layout@formlayout-projectFile</layout>
+				<layout>layout@formlayout-projectFolder</layout>
 			</layouts>
 			<layouts mode="view">
-				<layout>layout@formlayout-projectFile</layout>
+				<layout>heading</layout>
+				<layout>layout@formlayout-projectFolder</layout>
 			</layouts>
+			<contentViews category="content">
+				<contentView>ProjectFile_listing</contentView>
+			</contentViews>
 		</type>
 
 		<type id="Folder">
 			<subtypes>
-				<type>ProjectFile</type>
+				<type>ProjectFolder</type>
 				<type>UserFile</type>
 			</subtypes>
 		</type>
@@ -93,6 +129,12 @@
 			<subtypes>
 				<type>Workspace</type>
 				<type>Folder</type>
+			</subtypes>
+		</type>
+
+		<type id="ProjectFolder">
+			<subtypes>
+				<type>ProjectFile</type>
 			</subtypes>
 		</type>
 
@@ -106,7 +148,7 @@
 
 		<type id="Workspace">
 			<subtypes>
-				<type>ProjectFile</type>
+				<type>ProjectFolder</type>
 				<type>UserFile</type>
 			</subtypes>
 		</type>

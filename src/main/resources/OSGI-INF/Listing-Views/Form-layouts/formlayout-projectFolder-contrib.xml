@@ -1,28 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <component
-	name="org.athento.nuxeo.athento-nx-common-doctypes.formlayout-projectFileHeading"
+	name="org.athento.nuxeo.athento-nx-common-doctypes.formlayout-projectFolder"
 	version="1.0.0">
 	<require>org.nuxeo.runtime.started</require>
 
 	<extension target="org.nuxeo.ecm.platform.forms.layout.WebLayoutManager"
 		point="layouts">
 
-		<layout name="layout@formlayout-projectFileHeading">
+		<layout name="layout@formlayout-projectFolder">
 			<labels>
-				<label>label.athento-nx-common-doctypes.projectFileHeading</label>
+				<label>label.athento-nx-common-doctypes.ProjectFolder</label>
 			</labels>
 			<templates>
-				<template mode="any">/layouts/projectFileHeading_widget_layout_template.xhtml
+				<template mode="any">/layouts/projectFolder_widget_layout_template.xhtml
 				</template>
 			</templates>
 			<rows>
 				<row>
 					<properties mode="any">
-						<property name="nxl_colspan_0">1</property>
-						<property name="nxl_colspan_1">1</property>
+						<property name="nxl_colspan_0">2</property>
 					</properties>
-					<widget>projectid</widget>
 					<widget>category</widget>
 				</row>
 			</rows>
@@ -39,18 +37,10 @@
 					<property name="displayIdAndLabel">false</property>
 					<property name="ordering">ordering</property>
 					<property name="localize">true</property>
+					<property name="styleClass">bold</property>
+					<property name="required">true</property>
 				</properties>
 			</widget>
-			<widget name="projectid" type="text">
-				<labels>
-					<label mode="any">label.projectFile.projectid</label>
-				</labels>
-				<translated>true</translated>
-				<fields>
-					<field>projectFile:projectid</field>
-				</fields>
-			</widget>
-			
 		</layout>
 
 	</extension>
