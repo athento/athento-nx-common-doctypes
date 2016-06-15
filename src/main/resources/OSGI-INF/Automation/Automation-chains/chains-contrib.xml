@@ -152,6 +152,73 @@
 				</param>
 			</operation>
 		</chain>
+		
+		<!-- ***************************************************************** -->
+		<!-- ******  LifeCycle chains (also used in commonLC workflow   ****** -->
+		<!-- ***************************************************************** -->
+		
+		<chain id="LifeCycle-to_Denied">
+			<operation id="Context.FetchDocument" />
+			<operation id="Auth.LoginAs">
+				<param type="string" name="name">Administrator</param>
+			</operation>
+			<operation id="Document.SetLifeCycle">
+				<param type="string" name="value">to_Denied</param>
+			</operation>
+			<operation id="Auth.Logout" />
+		</chain>
+		
+		<chain id="LifeCycle-to_Draft">
+			<operation id="Context.FetchDocument" />
+			<operation id="Auth.LoginAs">
+				<param type="string" name="name">Administrator</param>
+			</operation>
+			<operation id="Document.SetLifeCycle">
+				<param type="string" name="value">to_Draft</param>
+			</operation>
+			<operation id="Auth.Logout" />
+		</chain>
+		
+		<chain id="LifeCycle-to_Finished">
+			<operation id="Context.FetchDocument" />
+			<operation id="Auth.LoginAs">
+				<param type="string" name="name">Administrator</param>
+			</operation>
+			<operation id="Document.SetLifeCycle">
+				<param type="string" name="value">to_Finished</param>
+			</operation>
+			<operation id="Auth.Logout" />
+		</chain>
+
+		<chain id="LifeCycle-to_PendingValidation">
+			<operation id="Context.FetchDocument" />
+			<operation id="Auth.LoginAs">
+				<param type="string" name="name">Administrator</param>
+			</operation>
+			<operation id="Document.SetLifeCycle">
+				<param type="string" name="value">to_PendingValidation</param>
+			</operation>
+			<operation id="Auth.Logout" />
+		</chain>
+
+		<chain id="LifeCycle-to_Validated">
+			<operation id="Context.FetchDocument" />
+			<operation id="Auth.LoginAs">
+				<param type="string" name="name">Administrator</param>
+			</operation>
+			<operation id="Document.SetLifeCycle">
+				<param type="string" name="value">to_Validated</param>
+			</operation>
+			<operation id="Auth.Logout" />
+		</chain>
+
+		<chain id="LifeCycle-UnlockDocument">
+			<operation id="Context.FetchDocument" />
+			<operation id="Auth.LoginAs">
+				<param type="string" name="name">expr:workflowInitiator</param>
+			</operation>
+			<operation id="Document.Unlock" />
+		</chain>
 
 		<!-- ***************************************************************** -->
 		<!-- ****** Workflow chains used in Project Validation workflow ****** -->
@@ -277,7 +344,7 @@
 		<chain id="PV-CancelAndUnlock">
 			<operation id="Context.FetchDocument" />
 			<operation id="Context.RunOperation">
-				<param type="string" name="id">PV-to_Draft</param>
+				<param type="string" name="id">LifeCycle-to_Draft</param>
 				<param type="boolean" name="isolate">false</param>
 			</operation>
 			<operation id="Context.RunOperation">
@@ -290,7 +357,7 @@
 		<chain id="PV-EndAndUnlock">
 			<operation id="Context.FetchDocument" />
 			<operation id="Context.RunOperation">
-				<param type="string" name="id">PV-to_Validated</param>
+				<param type="string" name="id">LifeCycle-to_Validated</param>
 				<param type="boolean" name="isolate">false</param>
 			</operation>
 			<operation id="Context.RunOperation">
@@ -320,7 +387,7 @@
 				<param type="boolean" name="isolate">false</param>
 			</operation>
 			<operation id="Context.RunOperation">
-				<param type="string" name="id">PV-to_PendingValidation</param>
+				<param type="string" name="id">LifeCycle-to_PendingValidation</param>
 				<param type="boolean" name="isolate">false</param>
 			</operation>
 			<operation id="Context.RunOperation">
@@ -372,47 +439,6 @@
 					false ? true : false
 				</param>
 			</operation>
-		</chain>
-
-		<chain id="PV-to_PendingValidation">
-			<operation id="Context.FetchDocument" />
-			<operation id="Auth.LoginAs">
-				<param type="string" name="name">Administrator</param>
-			</operation>
-			<operation id="Document.SetLifeCycle">
-				<param type="string" name="value">to_PendingValidation</param>
-			</operation>
-			<operation id="Auth.Logout" />
-		</chain>
-
-		<chain id="PV-to_Validated">
-			<operation id="Context.FetchDocument" />
-			<operation id="Auth.LoginAs">
-				<param type="string" name="name">Administrator</param>
-			</operation>
-			<operation id="Document.SetLifeCycle">
-				<param type="string" name="value">to_Validated</param>
-			</operation>
-			<operation id="Auth.Logout" />
-		</chain>
-		
-		<chain id="PV-to_Draft">
-			<operation id="Context.FetchDocument" />
-			<operation id="Auth.LoginAs">
-				<param type="string" name="name">Administrator</param>
-			</operation>
-			<operation id="Document.SetLifeCycle">
-				<param type="string" name="value">to_Draft</param>
-			</operation>
-			<operation id="Auth.Logout" />
-		</chain>
-
-		<chain id="PV-UnlockDocument">
-			<operation id="Context.FetchDocument" />
-			<operation id="Auth.LoginAs">
-				<param type="string" name="name">expr:workflowInitiator</param>
-			</operation>
-			<operation id="Document.Unlock" />
 		</chain>
 
 	</extension>

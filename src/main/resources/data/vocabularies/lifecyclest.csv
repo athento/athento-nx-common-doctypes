@@ -1,0 +1,7 @@
+"id","label","obsolete","ordering"
+"Validated","Validated","0","0"
+"PendingValidation","PendingValidation","0","1"
+"Finished","Finished","0","2"
+"Draft","Draft","0","3"
+"Denied","Denied","0","4"
+"Closed","Closed","0","5"

@@ -24,13 +24,31 @@
 			</rule>
 		</filter>
 
-		<!-- To enable Summary for all Folderish (as it is default) and UserFile and ProjectFile -->
+		<!-- To enable Summary for all non Folderish (as it is default) and UserFile 
+			and ProjectFile -->
 		<filter id="view">
 			<rule grant="false">
 				<condition>#{currentDocument.hasFacet("Folderish") and not
 					(currentDocument.type eq 'UserFile' or currentDocument.type eq
 					'ProjectFile')}
 				</condition>
+			</rule>
+		</filter>
+
+		<!-- To enable Relations for all non Folderish (as it is default) and UserFile 
+			and ProjectFile -->
+		<filter id="view_relations">
+			<rule grant="true">
+				<permission>Read</permission>
+			</rule>
+			<rule grant="false">
+				<condition>#{currentDocument.hasFacet("Folderish") and not
+					(currentDocument.type eq 'UserFile' or currentDocument.type eq
+					'ProjectFile')}
+				</condition>
+			</rule>
+			<rule grant="false">
+				<type>Server</type>
 			</rule>
 		</filter>
 
