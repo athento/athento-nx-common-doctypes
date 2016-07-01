@@ -30,50 +30,68 @@
 					<description>Recover from Trash and set the File in Draft
 					</description>
 				</transition>
+				<transition name="to_Closed" destinationState="Closed">
+					<description>File Closed</description>
+				</transition>
+				<transition name="to_Denied" destinationState="Denied">
+					<description>File Denied</description>
+				</transition>
+				<transition name="to_Draft" destinationState="Draft">
+					<description>Back to Draft</description>
+				</transition>
 				<transition name="to_PendingValidation" destinationState="PendingValidation">
 					<description>Ask for validation</description>
 				</transition>
 				<transition name="to_Validated" destinationState="Validated">
 					<description>File Validated</description>
 				</transition>
-				<transition name="to_Closed" destinationState="Closed">
-					<description>File Closed</description>
-				</transition>
-				<transition name="to_Draft" destinationState="Draft">
-					<description>Back to Draft</description>
-				</transition>
 			</transitions>
 			<states>
-				<state name="Draft"
-					description="Project File is being fulfilled but not yet complete"
+				<state name="Denied"
+					description="File is Denied"
 					initial="true">
 					<transitions>
 						<transition>delete</transition>
+						<transition>to_Closed</transition>
+						<transition>to_Draft</transition>
 						<transition>to_PendingValidation</transition>
 						<transition>to_Validated</transition>
-						<transition>to_Closed</transition>
 					</transitions>
 				</state>
-				<state name="PendingValidation" description="Project File is complete and pending validation">
+				<state name="Draft"
+					description="File is being fulfilled but not yet complete"
+					initial="true">
 					<transitions>
 						<transition>delete</transition>
+						<transition>to_Closed</transition>
+						<transition>to_Denied</transition>
+						<transition>to_PendingValidation</transition>
+						<transition>to_Validated</transition>
+					</transitions>
+				</state>
+				<state name="PendingValidation" description="File is complete and pending validation">
+					<transitions>
+						<transition>delete</transition>
+						<transition>to_Closed</transition>
+						<transition>to_Denied</transition>
 						<transition>to_Draft</transition>
 						<transition>to_Validated</transition>
-						<transition>to_Closed</transition>
 					</transitions>
 				</state>
 				<state name="Validated"
-					description="Project File validated, it is in execution in this phase">
+					description="File validated, it is in execution in this phase">
 					<transitions>
 						<transition>delete</transition>
+						<transition>to_Closed</transition>
+						<transition>to_Denied</transition>
 						<transition>to_Draft</transition>
 						<transition>to_PendingValidation</transition>
-						<transition>to_Closed</transition>
 					</transitions>
 				</state>
-				<state name="Closed" description="Project File is closed, actions ended">
+				<state name="Closed" description="File is closed, actions ended">
 					<transitions>
 						<transition>delete</transition>
+						<transition>to_Denied</transition>
 						<transition>to_Draft</transition>
 						<transition>to_PendingValidation</transition>
 						<transition>to_Validated</transition>
