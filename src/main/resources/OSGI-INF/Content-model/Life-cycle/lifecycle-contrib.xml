@@ -39,6 +39,9 @@
 				<transition name="to_Draft" destinationState="Draft">
 					<description>Back to Draft</description>
 				</transition>
+				<transition name="to_Finished" destinationState="Finished">
+					<description>Finished</description>
+				</transition>
 				<transition name="to_PendingValidation" destinationState="PendingValidation">
 					<description>Ask for validation</description>
 				</transition>
@@ -54,6 +57,7 @@
 						<transition>delete</transition>
 						<transition>to_Closed</transition>
 						<transition>to_Draft</transition>
+						<transition>to_Finished</transition>
 						<transition>to_PendingValidation</transition>
 						<transition>to_Validated</transition>
 					</transitions>
@@ -65,6 +69,7 @@
 						<transition>delete</transition>
 						<transition>to_Closed</transition>
 						<transition>to_Denied</transition>
+						<transition>to_Finished</transition>
 						<transition>to_PendingValidation</transition>
 						<transition>to_Validated</transition>
 					</transitions>
@@ -75,6 +80,7 @@
 						<transition>to_Closed</transition>
 						<transition>to_Denied</transition>
 						<transition>to_Draft</transition>
+						<transition>to_Finished</transition>
 						<transition>to_Validated</transition>
 					</transitions>
 				</state>
@@ -85,12 +91,24 @@
 						<transition>to_Closed</transition>
 						<transition>to_Denied</transition>
 						<transition>to_Draft</transition>
+						<transition>to_Finished</transition>
 						<transition>to_PendingValidation</transition>
 					</transitions>
 				</state>
 				<state name="Closed" description="File is closed, actions ended">
 					<transitions>
 						<transition>delete</transition>
+						<transition>to_Denied</transition>
+						<transition>to_Draft</transition>
+						<transition>to_Finished</transition>
+						<transition>to_PendingValidation</transition>
+						<transition>to_Validated</transition>
+					</transitions>
+				</state>
+				<state name="Finished" description="File is Finished, actions ended">
+					<transitions>
+						<transition>delete</transition>
+						<transition>to_Closed</transition>
 						<transition>to_Denied</transition>
 						<transition>to_Draft</transition>
 						<transition>to_PendingValidation</transition>

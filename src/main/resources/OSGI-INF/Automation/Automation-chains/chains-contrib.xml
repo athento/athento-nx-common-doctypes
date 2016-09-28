@@ -183,6 +183,7 @@
 				<param type="serializable" name="value">expr:remainingBudget_var
 				</param>
 			</operation>
+			
 		</chain>
 
 		<chain id="projectFile-prePopulateInCreation">
@@ -460,6 +461,18 @@
 				<param type="string" name="name">expr:workflowInitiator</param>
 			</operation>
 			<operation id="Document.Unlock" />
+		</chain>
+		
+		<!-- ***************************************************************** -->
+		<!-- ******                     Void Chain                      ****** -->
+		<!-- ***************************************************************** -->
+		
+		<chain id="voidChain">
+			<operation id="Auth.LoginAs">
+				<param type="string" name="name">Administrator</param>
+			</operation>
+			<operation id="Context.FetchDocument" />
+			<operation id="Auth.Logout" />
 		</chain>
 
 	</extension>

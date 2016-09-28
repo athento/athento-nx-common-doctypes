@@ -7,6 +7,18 @@
 	<extension target="org.nuxeo.ecm.directory.sql.SQLDirectoryFactory"
 		point="directories">
 
+		<directory name="lifecyclest">
+			<schema>vocabulary</schema>
+			<dataSource>java:/nxsqldirectory</dataSource>
+			<cacheTimeout>3600</cacheTimeout>
+			<cacheMaxSize>1000</cacheMaxSize>
+			<idField>id</idField>
+			<autoincrementIdField>false</autoincrementIdField>
+			<createTablePolicy>on_missing_columns</createTablePolicy>
+			<table>vocabulary_lifecyclest</table>
+			<dataFile>data/vocabularies/lifecyclest.csv</dataFile>
+		</directory>
+
 		<directory name="mk_activity">
 			<schema>vocabulary</schema>
 			<dataSource>java:/nxsqldirectory</dataSource>
@@ -97,6 +109,7 @@
 	<extension target="org.nuxeo.ecm.directory.ui.DirectoryUIManager"
 		point="directories">
 
+		<directory name="lifecyclest" layout="vocabulary" sortField="label" />
 		<directory name="mk_activity" layout="vocabulary" sortField="label" />
 		<directory name="mk_category" layout="vocabulary" sortField="label" />
 		<directory name="mk_imputation" layout="vocabulary"
