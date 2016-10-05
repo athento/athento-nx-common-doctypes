@@ -34,13 +34,40 @@
 				<param type="object" name="value">expr:Document["projectFile:category"]
 				</param>
 			</operation>
+			<operation id="Context.SetVar">
+				<param type="string" name="name">category_var</param>
+				<param type="object" name="value">expr:Fn.getVocabularyLabel("mk_category_key",category_var)
+				</param>
+			</operation>			
+			<!-- Imputation. Used for uniqueness of number id -->
+			<operation id="Context.SetVar">
+				<param type="string" name="name">imputation_var</param>
+				<param type="object" name="value">expr:Document["invoicing:imputation"]
+				</param>
+			</operation>
+			<operation id="Context.SetVar">
+				<param type="string" name="name">imputation_var</param>
+				<param type="object" name="value">expr:Fn.getVocabularyLabel("mk_imputation_key",imputation_var)
+				</param>
+			</operation>
+			<!-- Activity. Used for uniqueness of number id -->
+			<operation id="Context.SetVar">
+				<param type="string" name="name">activity_var</param>
+				<param type="object" name="value">expr:Document["projectFile:activity"]
+				</param>
+			</operation>
+			<operation id="Context.SetVar">
+				<param type="string" name="name">activity_var</param>
+				<param type="object" name="value">expr:Fn.getVocabularyLabel("mk_activity_key",activity_var)
+				</param>
+			</operation>
 			<!-- Region. Used for uniqueness of number id AND the composition of the 
 				id -->
 			<operation id="Context.SetVar">
 				<param type="string" name="name">index_var</param>
 				<param type="object" name="value">expr:Document["invoicing:region"].lastIndexOf('/')
 				</param>
-			</operation>
+			</operation>			
 			<operation id="Context.SetVar">
 				<param type="string" name="name">index_var</param>
 				<param type="object" name="value">expr:index_var == -1 ? 2 : index_var
@@ -56,7 +83,7 @@
 			</operation>
 			<operation id="Context.SetVar">
 				<param type="string" name="name">region_index_var</param>
-				<param type="object" name="value">expr:Fn.getVocabularyLabel("org_key",region_var)
+				<param type="object" name="value">expr:Document["invoicing:region"].length() > 2 ? Document["invoicing:region"].substring(Document["invoicing:region"].length()-2) : Fn.getVocabularyLabel("org_high_key",region_var)
 				</param>
 			</operation>
 			<!-- Year. Used for uniqueness of number id AND the composition of the 
@@ -82,7 +109,7 @@
 				and projectid -->
 			<operation id="Context.SetVar">
 				<param type="string" name="name">id_var</param>
-				<param type="object" name="value">expr:@{region_index_var+year_var+uniquenumberformatted_var}
+				<param type="object" name="value">expr:@{imputation_var+activity_var+region_index_var+year_var+uniquenumberformatted_var+" - "+Document["projectFile:summary"]}
 				</param>
 			</operation>
 			<operation id="Document.SetProperty">
@@ -121,7 +148,7 @@
 			</documentation>
 			<operation id="Context.SetVar">
 				<param type="string" name="name">user_var</param>
-				<param type="object" name="value">expr:@{currentUser.name}
+				<param type="object" name="value">expr:@{currentUser.firstName+" "+currentUser.lastName}
 				</param>
 			</operation>
 			<operation id="Document.SetProperty">

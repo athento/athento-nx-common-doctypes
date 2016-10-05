@@ -51,8 +51,7 @@
 			</transitions>
 			<states>
 				<state name="Denied"
-					description="File is Denied"
-					initial="true">
+					description="File is Denied">
 					<transitions>
 						<transition>delete</transition>
 						<transition>to_Closed</transition>
