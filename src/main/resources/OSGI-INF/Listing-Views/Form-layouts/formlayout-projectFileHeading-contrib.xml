@@ -21,7 +21,9 @@
 					<properties mode="any">
 						<property name="nxl_colspan_0">1</property>
 						<property name="nxl_colspan_1">1</property>
+						<property name="nxl_colspan_2">1</property>
 					</properties>
+					<widget>projectDocid</widget>
 					<widget>projectid</widget>
 					<widget>category</widget>
 				</row>
@@ -49,6 +51,31 @@
 				<fields>
 					<field>projectFile:projectid</field>
 				</fields>
+				<widgetModes>
+					<mode value="create">hidden</mode>
+					<mode value="edit">view</mode>
+					<mode value="view">#{empty layoutValue.projectFile.projectDocid ? 'view' : 'hidden'}</mode>
+				</widgetModes>
+			</widget>
+			<widget name="projectDocid" type="singleDocumentSuggestion">
+				<labels>
+					<label mode="any">label.projectFile.projectDocid</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>projectFile:projectDocid</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="required">true</property>
+					<property name="minChars">0</property>
+					<property name="hideHelpLabel">true</property>
+					<property name="query">SELECT * FROM ProjectFile WHERE ecm:isCheckedInVersion = 0 AND
+						ecm:currentLifeCycleState != 'deleted' AND dc:title ILIKE '%?%'
+					</property>
+				</properties> 
+				<widgetModes>
+					<mode value="view">#{empty layoutValue.projectFile.projectDocid ? 'hidden' : 'view'}</mode>
+				</widgetModes>
 			</widget>
 			
 		</layout>
