@@ -1,0 +1,6 @@
+"id","label","obsolete","ordering"
+"Denied","Denied",0,0
+"PendingValidation","PendingValidation",0,1
+"Validated","Validated",0,2
+"Finished","Finished",0,3
+

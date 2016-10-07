@@ -43,7 +43,9 @@
 	<!-- End planned date for the project -->
 	<xs:element name="endPlannedDate" type="xs:date" />
 	<!-- End real date for the project -->
-	<xs:element name="endRealDate" type="xs:date" />
+	<xs:element name="endRealDate" type="xs:date" />	
+	<!-- Project Doc ID. Unique internal reference for a quick access to the project information -->
+	<xs:element name="projectDocid" type="xs:string" />
 	<!-- Project ID -->
 	<xs:element name="projectid" type="xs:string" />
 	<!-- Project Complete Name -->
