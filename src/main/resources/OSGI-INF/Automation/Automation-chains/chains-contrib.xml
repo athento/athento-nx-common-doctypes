@@ -278,7 +278,12 @@
 			<operation id="Context.SetWorkflowVar">
 				<param type="string" name="name">suffix_office</param>
 				<param type="object" name="value">expr:suffix_office_var == empty ?
-					empty : suffix_office_var
+					(suffix_region_var == '01' ? '0101' :
+					suffix_region_var == '02' ? '0202' :
+					suffix_region_var == '03' ? '0350' :
+					suffix_region_var == '04' ? '0470' :
+					suffix_region_var == '05' ? '0101' : empty ) :
+					suffix_office_var
 				</param>
 			</operation>
 		</chain>
