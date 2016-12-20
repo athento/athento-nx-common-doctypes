@@ -21,17 +21,28 @@
 					<properties mode="any">
 						<property name="nxl_colspan_0">1</property>
 						<property name="nxl_colspan_1">1</property>
+						<property name="nxl_colspan_2">1</property>
 					</properties>
+					<widget>projectDocid</widget>
 					<widget>projectid</widget>
-					<widget>projectUserid</widget>
-				</row>
-				<row>
-					<properties mode="any">
-						<property name="nxl_colspan_0">2</property>
-					</properties>
-					<widget>projectName</widget>
+					<widget>category</widget>
 				</row>
 			</rows>
+			<widget name="category" type="selectOneDirectory">
+				<labels>
+					<label mode="any">label.projectFile.category</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>projectFile:category</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="directoryName">mk_category</property>
+					<property name="displayIdAndLabel">false</property>
+					<property name="ordering">ordering</property>
+					<property name="localize">true</property>
+				</properties>
+			</widget>
 			<widget name="projectid" type="text">
 				<labels>
 					<label mode="any">label.projectFile.projectid</label>
@@ -40,25 +51,32 @@
 				<fields>
 					<field>projectFile:projectid</field>
 				</fields>
+				<widgetModes>
+					<mode value="create">hidden</mode>
+					<mode value="edit">view</mode>
+					<mode value="view">#{empty layoutValue.projectFile.projectDocid ? 'view' : 'hidden'}</mode>
+				</widgetModes>
 			</widget>
-			<widget name="projectUserid" type="text">
+			<widget name="projectDocid" type="singleDocumentSuggestion">
 				<labels>
-					<label mode="any">label.projectFile.projectUserid</label>
+					<label mode="any">label.projectFile.projectDocid</label>
 				</labels>
 				<translated>true</translated>
 				<fields>
-					<field>projectFile:projectUserid</field>
+					<field>projectFile:projectDocid</field>
 				</fields>
+				<properties widgetMode="any">
+					<property name="minChars">0</property>
+					<property name="hideHelpLabel">true</property>
+					<property name="query">SELECT * FROM ProjectFile WHERE ecm:isCheckedInVersion = 0 AND
+						ecm:currentLifeCycleState != 'deleted' AND dc:title ILIKE '%?%'
+					</property>
+				</properties> 
+				<widgetModes>
+					<mode value="view">#{empty layoutValue.projectFile.projectDocid ? 'hidden' : 'view'}</mode>
+				</widgetModes>
 			</widget>
-			<widget name="projectName" type="text">
-				<labels>
-					<label mode="any">label.projectFile.projectName</label>
-				</labels>
-				<translated>true</translated>
-				<fields>
-					<field>projectFile:projectName</field>
-				</fields>
-			</widget>
+			
 		</layout>
 
 	</extension>

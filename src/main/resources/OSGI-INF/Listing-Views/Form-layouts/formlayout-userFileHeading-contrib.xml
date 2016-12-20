@@ -1,106 +1,204 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <component
-	name="org.athento.nuxeo.athento-nx-common-doctypes.formlayout-userFileHeading"
-	version="1.0.0">
-	<require>org.nuxeo.runtime.started</require>
+    name="org.athento.nuxeo.athento-nx-common-doctypes.formlayout-userFileHeading"
+    version="1.0.0">
+    <require>org.nuxeo.runtime.started</require>
 
-	<extension target="org.nuxeo.ecm.platform.forms.layout.WebLayoutManager"
-		point="layouts">
+    <extension target="org.nuxeo.ecm.platform.forms.layout.WebLayoutManager"
+        point="layouts">
 
-		<layout name="layout@formlayout-userFileHeading">
-			<labels>
-				<label>label.athento-nx-common-doctypes.userFileHeading</label>
-			</labels>
-			<templates>
-				<template mode="any">/layouts/userFileHeading_widget_layout_template.xhtml
-				</template>
-			</templates>
-			<rows>
-				<row>
-					<properties mode="any">
-						<property name="nxl_colspan_0">2</property>
-					</properties>
-					<widget>nameid</widget>
-				</row>
-				<row>
-					<properties mode="any">
-						<property name="nxl_colspan_0">1</property>
-						<property name="nxl_colspan_1">1</property>
-					</properties>
-					<widget>nameandsurname</widget>
-					<widget>companyNumber</widget>
-				</row>
-				<row>
-					<properties mode="any">
-						<property name="nxl_colspan_0">2</property>
-					</properties>
-					<widget>area</widget>
-				</row>
-				<row>
-					<properties mode="any">
-						<property name="nxl_colspan_0">1</property>
-						<property name="nxl_colspan_1">1</property>
-					</properties>
-					<widget>phone</widget>
-					<widget>location</widget>
-				</row>
-			</rows>
-			<widget name="nameid" type="text">
-				<labels>
-					<label mode="any">label.userFile.nameid</label>
-				</labels>
-				<translated>true</translated>
-				<fields>
-					<field>userFile:nameid</field>
-				</fields>
-			</widget>
-			<widget name="nameandsurname" type="text">
-				<labels>
-					<label mode="any">label.userFile.nameandsurname</label>
-				</labels>
-				<translated>true</translated>
-				<fields>
-					<field>userFile:nameandsurname</field>
-				</fields>
-			</widget>
-			<widget name="companyNumber" type="text">
-				<labels>
-					<label mode="any">label.userFile.companyNumber</label>
-				</labels>
-				<translated>true</translated>
-				<fields>
-					<field>userFile:companyNumber</field>
-				</fields>
-			</widget>
-			<widget name="area" type="text">
-				<labels>
-					<label mode="any">label.userFile.area</label>
-				</labels>
-				<translated>true</translated>
-				<fields>
-					<field>userFile:area</field>
-				</fields>
-			</widget>
-			<widget name="phone" type="text">
-				<labels>
-					<label mode="any">label.userFile.phone</label>
-				</labels>
-				<translated>true</translated>
-				<fields>
-					<field>userFile:phone</field>
-				</fields>
-			</widget>
-			<widget name="location" type="text">
-				<labels>
-					<label mode="any">label.userFile.location</label>
-				</labels>
-				<translated>true</translated>
-				<fields>
-					<field>userFile:location</field>
-				</fields>
-			</widget>
-		</layout>
+        <layout name="layout@formlayout-userFileHeading">
+            <labels>
+                <label>label.athento-nx-common-doctypes.userFileHeading</label>
+            </labels>
+            <templates>
+                <template mode="any">/layouts/userFileHeading_widget_layout_template.xhtml
+                </template>
+            </templates>
+            <rows>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">2</property>
+                    </properties>
+                    <widget>isCurrentUser</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                        <property name="nxl_colspan_1">1</property>
+                    </properties>
+                    <widget>name</widget>
+                    <widget>office</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                        <property name="nxl_colspan_1">1</property>
+                    </properties>
+                    <widget>surname1</widget>
+                    <widget>account</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                        <property name="nxl_colspan_1">1</property>
+                    </properties>
+                    <widget>surname2</widget>
+                    <widget>area</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                        <property name="nxl_colspan_1">1</property>
+                    </properties>
+                    <widget>category</widget>
+                    <widget>activity</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                        <property name="nxl_colspan_1">1</property>
+                    </properties>
+                    <widget>nameid</widget>
+                    <widget>phone</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                        <property name="nxl_colspan_1">1</property>
+                    </properties>
+                    <widget></widget>
+                    <widget>mail</widget>
+                </row>
+            </rows>
+            <widget name="account" type="text">
+                <labels>
+                    <label mode="any">label.userFile.account</label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>userFile:account</field>
+                </fields>
+            </widget>
+            <widget name="activity" type="text">
+                <labels>
+                    <label mode="any">label.userFile.activity</label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>userFile:activity</field>
+                </fields>
+            </widget>
+            <widget name="area" type="text">
+                <labels>
+                    <label mode="any">label.userFile.area</label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>userFile:area</field>
+                </fields>
+            </widget>
+            <widget name="category" type="text">
+                <labels>
+                    <label mode="any">label.userFile.category</label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>userFile:category</field>
+                </fields>
+            </widget>
+            <widget name="isCurrentUser" type="checkbox">
+                <labels>
+                    <label mode="any">label.userFile.isCurrentUser</label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>userFile:isCurrentUser</field>
+                </fields>
+            </widget>
+            <widget name="mail" type="text">
+                <labels>
+                    <label mode="any">label.userFile.mail</label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>userFile:mail</field>
+                </fields>
+            </widget>
+            <widget name="name" type="text">
+                <labels>
+                    <label mode="any">label.userFile.name</label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>userFile:name</field>
+                </fields>
+            </widget>
+            <widget name="nameid" type="text">
+                <labels>
+                    <label mode="any">label.userFile.nameid</label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>userFile:nameid</field>
+                </fields>
+            </widget>
+            <widget name="office" type="text">
+                <labels>
+                    <label mode="any">label.userFile.office</label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>userFile:office</field>
+                </fields>
+            </widget>
+            <widget name="phone" type="text">
+                <labels>
+                    <label mode="any">label.userFile.phone</label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>userFile:phone</field>
+                </fields>
+            </widget>
+            <widget name="surname1" type="text">
+                <labels>
+                    <label mode="any">label.userFile.surname1</label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>userFile:surname1</field>
+                </fields>
+            </widget>
+            <widget name="surname2" type="text">
+                <labels>
+                    <label mode="any">label.userFile.surname2</label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>userFile:surname2</field>
+                </fields>
+            </widget>
+            <widget name="phone" type="text">
+                <labels>
+                    <label mode="any">label.userFile.phone</label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>userFile:phone</field>
+                </fields>
+            </widget>
+            <widget name="location" type="text">
+                <labels>
+                    <label mode="any">label.userFile.location</label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>userFile:location</field>
+                </fields>
+            </widget>
+        </layout>
 
 	</extension>
 

@@ -40,6 +40,12 @@
 	<xs:element name="nameid" type="xs:string" />
 	<!-- Complete user Name and Surname -->
 	<xs:element name="nameandsurname" type="xs:string" />
+	<!-- Complete user Name -->
+	<xs:element name="name" type="xs:string" />
+	<!-- Complete user Surname 1 -->
+	<xs:element name="surname1" type="xs:string" />
+	<!-- Complete user Surname 2 -->
+	<xs:element name="surname2" type="xs:string" />
 	<!-- User phone number -->
 	<xs:element name="phone" type="xs:string" />
 	<!-- User Location -->
@@ -48,5 +54,21 @@
 	<xs:element name="companyNumber" type="xs:string" />
 	<!-- User Area -->
 	<xs:element name="area" type="xs:string" />
+	<!-- User Activity -->
+	<xs:element name="activity" type="xs:string" />
+	<!-- Identification Number -->
+	<xs:element name="idNumber" type="xs:string" />
+	<!-- User Mail -->
+	<xs:element name="mail" type="xs:string" />
+	<!-- User Address -->
+	<xs:element name="address" type="xs:string" />
+	<!-- User Category -->
+	<xs:element name="category" type="xs:string" />
+	<!-- User Office -->
+	<xs:element name="office" type="xs:string" />
+	<!-- User Ledger Account (from an administrative point of view) -->
+	<xs:element name="account" type="xs:string" />
+	<!-- True if the current user IS the requester, false if the user is going to use the form to complete user info -->
+	<xs:element name="isCurrentUser" type="xs:boolean" default="true"/>
 
 </xs:schema>
