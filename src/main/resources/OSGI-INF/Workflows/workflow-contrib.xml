@@ -1,13 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<component
-	name="org.athento.nuxeo.athento-nx-common-doctypes.workflow"
+<component name="org.athento.nuxeo.athento-nx-common-doctypes.workflow"
 	version="1.0.0">
 	<require>org.nuxeo.runtime.started</require>
 
 	<extension target="org.nuxeo.ecm.platform.jbpm.core.JbpmService"
 		point="typeFilter">
 
+	</extension>
+
+	<extension target="org.nuxeo.ecm.platform.routing.service"
+		point="routeModelImporter">
+		<template-resource id="pv" path="data/pv.zip" label="label.pv"/>
+	</extension>
+
+	<extension target="org.nuxeo.ecm.platform.actions.ActionService"
+		point="filters">
+		
+		<filter id="filter@wf@pv">
+			<rule grant="true">
+				<permission>Write</permission>
+				<type>ProjectFile</type>
+				<group>pv_wf_initiators</group>
+			</rule>
+			<rule grant="false">
+				<condition>document.currentLifeCycleState != "Draft"</condition>
+			</rule>
+			<rule grant="false">
+				<condition>document.isImmutable() || document.isProxy()</condition>
+			</rule>
+		</filter>
+		
 	</extension>
 
 </component>

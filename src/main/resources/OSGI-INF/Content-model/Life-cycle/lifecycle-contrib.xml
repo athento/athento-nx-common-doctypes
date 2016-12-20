@@ -1,12 +1,121 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<component
-	name="org.athento.nuxeo.athento-nx-common-doctypes.lifecycle"
+<component name="org.athento.nuxeo.athento-nx-common-doctypes.lifecycle"
 	version="1.0.0">
 	<require>org.nuxeo.runtime.started</require>
 	<extension target="org.nuxeo.ecm.core.lifecycle.LifeCycleService"
 		point="types">
 
+		<types>
+			<type name="UserFile">default</type>
+		</types>
+		<types>
+			<type name="ProjectFile">commonLC</type>
+		</types>
+		<types>
+			<type name="ProjectFolder">default</type>
+		</types>
+
+	</extension>
+
+	<extension target="org.nuxeo.ecm.core.lifecycle.LifeCycleService"
+		point="lifecycle">
+
+		<lifecycle name="commonLC" defaultInitial="Draft">
+			<transitions>
+				<transition name="delete" destinationState="deleted">
+					<description>Delete a file</description>
+				</transition>
+				<transition name="undelete" destinationState="Draft">
+					<description>Recover from Trash and set the File in Draft
+					</description>
+				</transition>
+				<transition name="to_Closed" destinationState="Closed">
+					<description>File Closed</description>
+				</transition>
+				<transition name="to_Denied" destinationState="Denied">
+					<description>File Denied</description>
+				</transition>
+				<transition name="to_Draft" destinationState="Draft">
+					<description>Back to Draft</description>
+				</transition>
+				<transition name="to_Finished" destinationState="Finished">
+					<description>Finished</description>
+				</transition>
+				<transition name="to_PendingValidation" destinationState="PendingValidation">
+					<description>Ask for validation</description>
+				</transition>
+				<transition name="to_Validated" destinationState="Validated">
+					<description>File Validated</description>
+				</transition>
+			</transitions>
+			<states>
+				<state name="Denied"
+					description="File is Denied">
+					<transitions>
+						<transition>delete</transition>
+						<transition>to_Closed</transition>
+						<transition>to_Draft</transition>
+						<transition>to_Finished</transition>
+						<transition>to_PendingValidation</transition>
+						<transition>to_Validated</transition>
+					</transitions>
+				</state>
+				<state name="Draft"
+					description="File is being fulfilled but not yet complete"
+					initial="true">
+					<transitions>
+						<transition>delete</transition>
+						<transition>to_Closed</transition>
+						<transition>to_Denied</transition>
+						<transition>to_Finished</transition>
+						<transition>to_PendingValidation</transition>
+						<transition>to_Validated</transition>
+					</transitions>
+				</state>
+				<state name="PendingValidation" description="File is complete and pending validation">
+					<transitions>
+						<transition>delete</transition>
+						<transition>to_Closed</transition>
+						<transition>to_Denied</transition>
+						<transition>to_Draft</transition>
+						<transition>to_Finished</transition>
+						<transition>to_Validated</transition>
+					</transitions>
+				</state>
+				<state name="Validated"
+					description="File validated, it is in execution in this phase">
+					<transitions>
+						<transition>delete</transition>
+						<transition>to_Closed</transition>
+						<transition>to_Denied</transition>
+						<transition>to_Draft</transition>
+						<transition>to_Finished</transition>
+						<transition>to_PendingValidation</transition>
+					</transitions>
+				</state>
+				<state name="Closed" description="File is closed, actions ended">
+					<transitions>
+						<transition>delete</transition>
+						<transition>to_Denied</transition>
+						<transition>to_Draft</transition>
+						<transition>to_Finished</transition>
+						<transition>to_PendingValidation</transition>
+						<transition>to_Validated</transition>
+					</transitions>
+				</state>
+				<state name="Finished" description="File is Finished, actions ended">
+					<transitions>
+						<transition>delete</transition>
+						<transition>to_Closed</transition>
+						<transition>to_Denied</transition>
+						<transition>to_Draft</transition>
+						<transition>to_PendingValidation</transition>
+						<transition>to_Validated</transition>
+					</transitions>
+				</state>
+			</states>
+		</lifecycle>
 	</extension>
 
 </component>

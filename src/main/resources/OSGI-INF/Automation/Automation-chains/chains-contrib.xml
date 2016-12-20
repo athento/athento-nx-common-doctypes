@@ -494,14 +494,14 @@
 			</operation>
 			<operation id="Document.Unlock" />
 		</chain>
-		
+
 		<chain id="PV-ResendAssignationMail">
 			<documentation>Automatically assign creator as solicitant id
 			</documentation>
 			<operation id="Context.FetchDocument" />
 			<operation id="sendTaskCreatedNotificationMail" />
 		</chain>
-		
+
 		<!-- ***************************************************************** -->
 		<!-- ******                     Void Chain                      ****** -->
 		<!-- ***************************************************************** -->

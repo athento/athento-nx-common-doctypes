@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<component
-	name="org.athento.nuxeo.athento-nx-common-doctypes.schemas"
+<component name="org.athento.nuxeo.athento-nx-common-doctypes.schemas"
 	version="1.0.0">
 	<require>org.nuxeo.runtime.started</require>
 
 	<extension target="org.nuxeo.ecm.core.schema.TypeService"
 		point="schema">
 
+		<schema name="invoicing" prefix="invoicing" src="data/schemas/invoicing.xsd" />
+		<schema name="marketing" prefix="marketing" src="data/schemas/marketing.xsd" />
+		<schema name="projectFile" prefix="projectFile"
+			src="data/schemas/projectFile.xsd" />
 		<schema name="userFile" prefix="userFile" src="data/schemas/userFile.xsd" />
-		<schema name="projectFile" prefix="projectFile" src="data/schemas/projectFile.xsd" />
+		<schema name="validation" prefix="validation" src="data/schemas/validation.xsd" />		
 
 	</extension>
 

@@ -3,11 +3,10 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>athento-nx-common-doctypes</groupId>
 	<artifactId>athento-nx-common-doctypes</artifactId>
-	<version>1.0</version>
+	<version>1.5-SNAPSHOT</version>
 	<name>Athento NX Common Doctypes</name>
 	<description>Athento NX Common Doctypes</description>
-
-	<dependencyManagement>
+<dependencyManagement>
 
 		<dependencies>
 			<dependency>
@@ -93,23 +92,100 @@
 						<doUpdate>false</doUpdate>
 					</configuration>
 				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-jar-plugin</artifactId>
-					<version>2.3.1</version>
-					<configuration>
-						<archive>
-							<manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
-							<manifestEntries>
-								<Bundle-Version>${project.version}-t${buildNumber}</Bundle-Version>
-								<Bundle-ManifestVersion>2</Bundle-ManifestVersion>
-							</manifestEntries>
-						</archive>
-					</configuration>
-				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
+
+	<profiles>
+		<profile>
+			<id>test</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<timestamp>${maven.build.timestamp}</timestamp>
+				<maven.build.timestamp.format>yyyyMMddHHmm</maven.build.timestamp.format>
+			</properties>
+			<build>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-jar-plugin</artifactId>
+							<version>2.3.1</version>
+							<configuration>
+								<finalName>${project.artifactId}-${project.version}-${maven.build.timestamp}</finalName>
+								<archive>
+									<manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
+									<manifestEntries>
+										<Bundle-Version>${project.version}-t${buildNumber}</Bundle-Version>
+										<Bundle-ManifestVersion>2</Bundle-ManifestVersion>
+									</manifestEntries>
+								</archive>
+							</configuration>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+			</build>
+		</profile>
+		<profile>
+			<id>pro</id>
+			<activation>
+				<property>
+					<name>env</name>
+					<value>pro</value>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.athento.nuxeo.plugin</groupId>
+						<artifactId>athento-nx-single-addon</artifactId>
+						<version>1.0</version>
+						<configuration>
+							<name>${project.artifactId}</name>
+							<version>${project.version}</version>
+							<properties>
+								<url>http://www.athento.com</url>
+								<title>${project.name}</title>
+								<description>${project.description}</description>
+								<platform>cap-6.0</platform>
+							</properties>
+							<outputDir>addon</outputDir>
+						</configuration>
+						<executions>
+							<execution>
+								<id>addon-generation</id>
+								<phase>package</phase>
+								<goals>
+									<goal>generate</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-jar-plugin</artifactId>
+							<version>2.3.1</version>
+							<configuration>
+								<archive>
+									<manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
+									<manifestEntries>
+										<Bundle-Version>${project.version}-t${buildNumber}</Bundle-Version>
+										<Bundle-ManifestVersion>2</Bundle-ManifestVersion>
+									</manifestEntries>
+								</archive>
+							</configuration>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+			</build>
+
+		</profile>
+	</profiles>
 
 	<properties>
 		<nuxeo.platform.version>6.0</nuxeo.platform.version>
@@ -139,6 +215,71 @@
 			</snapshots>
 		</repository>
 
+		<repository>
+			<id>athento-public</id>
+			<name>Athento Releases</name>
+			<url>http://maven2.yerbabuena.es/artifactory/athento-public</url>
+			<layout>default</layout>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+
+		<repository>
+			<id>athento-public-snapshots</id>
+			<name>Athento Artifact Snapshots</name>
+			<url>http://maven2.yerbabuena.es/artifactory/athento-public-snapshot</url>
+			<layout>default</layout>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+
+		<repository>
+			<id>athento-private</id>
+			<name>Athento Private Releases</name>
+			<url>http://maven2.yerbabuena.es/artifactory/athento-private</url>
+			<layout>default</layout>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+
+		<repository>
+			<id>athento-private-snapshots</id>
+			<name>Athento Private Artifact Snapshots</name>
+			<url>http://maven2.yerbabuena.es/artifactory/athento-private-snapshot</url>
+			<layout>default</layout>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+
+		<repository>
+			<id>athento-libs-releases</id>
+			<name></name>
+			<url>http://maven2.yerbabuena.es/artifactory/libs-releases</url>
+			<layout>default</layout>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+
 	</repositories>
 
 	<pluginRepositories>
@@ -155,6 +296,51 @@
 			</snapshots>
 		</pluginRepository>
 
+		<pluginRepository>
+			<id>athento-public</id>
+			<name>Athento Releases</name>
+			<url>http://maven2.yerbabuena.es/artifactory/athento-public</url>
+			<layout>default</layout>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+
+		<pluginRepository>
+			<id>athento-public-snapshots</id>
+			<name>Athento Artifact Snapshots</name>
+			<url>http://maven2.yerbabuena.es/artifactory/athento-public-snapshot</url>
+			<layout>default</layout>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+
 	</pluginRepositories>
+
+	<distributionManagement>
+
+		<repository>
+			<id>athento-public</id>
+			<name>Athento Public</name>
+			<url>http://maven2.yerbabuena.es/artifactory/athento-public</url>
+			<layout>default</layout>
+		</repository>
+
+		<snapshotRepository>
+			<uniqueVersion>true</uniqueVersion>
+			<id>athento-public-snapshot</id>
+			<name>Athento Public Snapshot</name>
+			<url>http://maven2.yerbabuena.es/artifactory/athento-public-snapshot</url>
+			<layout>default</layout>
+		</snapshotRepository>
+
+	</distributionManagement>
 
 </project>

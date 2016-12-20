@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<component
-	name="org.athento.nuxeo.athento-nx-common-doctypes.versioning"
+<component name="org.athento.nuxeo.athento-nx-common-doctypes.versioning"
 	version="1.0.0">
 	<require>org.nuxeo.runtime.started</require>
 
 	<extension target="org.nuxeo.ecm.core.versioning.VersioningService"
 		point="versioningRules">
+
+		<versioningRule typeName="ProjectFile">
+			<initialState major="0" minor="0" />
+			<options lifeCycleState="*">
+				<none />
+				<minor default="true" />
+				<major />
+			</options>
+		</versioningRule>
 
 	</extension>
 

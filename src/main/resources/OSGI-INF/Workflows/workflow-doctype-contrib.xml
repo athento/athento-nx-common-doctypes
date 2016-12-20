@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component
+	name="org.athento.nuxeo.athento-nx-common-doctypes.workflow-doctype"
+	version="1.0.0">
+	<require>org.nuxeo.runtime.started</require>
+
+	<extension target="org.nuxeo.ecm.core.schema.TypeService"
+		point="doctype">
+
+		<facet name="facet-var_Task1e35">
+			<schema name="var_Task1e35" />
+		</facet>
+		<facet name="facet-var_Task1fa1">
+			<schema name="var_Task1fa1" />
+		</facet>
+		<facet name="facet-var_Task20e5">
+			<schema name="var_Task20e5" />
+		</facet>
+		<facet name="facet-var_Task2215">
+			<schema name="var_Task2215" />
+		</facet>
+		<facet name="facet-var_Task2348">
+			<schema name="var_Task2348" />
+		</facet>
+		<facet name="facet-var_Task23ea">
+			<schema name="var_Task23ea" />
+		</facet>
+		<facet name="facet-var_Task454">
+			<schema name="var_Task454" />
+		</facet>
+		<facet name="facet-var_Taskaf8">
+			<schema name="var_Taskaf8" />
+		</facet>
+		<facet name="facet-var_start-node">
+			<schema name="var_start-node" />
+		</facet>
+		<facet name="facet-var_stop-node">
+			<schema name="var_stop-node" />
+		</facet>
+		<facet name="facet-var_pv">
+			<schema name="var_pv" />
+		</facet>
+
+	</extension>
+
+	<extension target="org.nuxeo.ecm.platform.types.TypeService"
+		point="types">
+
+	</extension>
+
+	<extension target="org.nuxeo.ecm.core.schema.TypeService"
+		point="schema">
+		<schema name="var_Task1e35" prefix="var_Task1e35" override="true"
+			src="data/schemas/var_Task1e35.xsd" />
+		<schema name="var_Task1fa1" prefix="var_Task1fa1" override="true"
+			src="data/schemas/var_Task1fa1.xsd" />
+		<schema name="var_Task20e5" prefix="var_Task20e5" override="true"
+			src="data/schemas/var_Task20e5.xsd" />
+		<schema name="var_Task2215" prefix="var_Task2215" override="true"
+			src="data/schemas/var_Task2215.xsd" />
+		<schema name="var_Task2348" prefix="var_Task2348" override="true"
+			src="data/schemas/var_Task2348.xsd" />
+		<schema name="var_Task23ea" prefix="var_Task23ea" override="true"
+			src="data/schemas/var_Task23ea.xsd" />
+		<schema name="var_Task454" prefix="var_Task454" override="true"
+			src="data/schemas/var_Task454.xsd" />
+		<schema name="var_Taskaf8" prefix="var_Taskaf8" override="true"
+			src="data/schemas/var_Taskaf8.xsd" />
+		<schema name="var_start-node" prefix="var_start-node" override="true"
+			src="data/schemas/var_start-node.xsd" />
+		<schema name="var_stop-node" prefix="var_stop-node" override="true"
+			src="data/schemas/var_stop-node.xsd" />
+		<schema name="var_pv" prefix="var_pv" override="true"
+			src="data/schemas/var_pv.xsd" />
+	</extension>
+
+</component>

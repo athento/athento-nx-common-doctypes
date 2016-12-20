@@ -1,12 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<component
-	name="org.athento.nuxeo.athento-nx-common-doctypes.contentview-cv"
+<component name="org.athento.nuxeo.athento-nx-common-doctypes.contentview-cv"
 	version="1.0.0">
 	<require>org.nuxeo.runtime.started</require>
 
 	<extension target="org.nuxeo.ecm.platform.ui.web.ContentViewService"
 		point="contentViews">
+
+		<contentView name="ProjectFile_listing">
+			<title>label.athento-nx-common-doctypes.ProjectFile_listing</title>
+			<translateTitle>true</translateTitle>
+			<coreQueryPageProvider>
+				<property name="coreSession">#{documentManager}</property>
+				<searchDocumentType>ProjectFile_cv</searchDocumentType>
+				<pattern>SELECT * FROM ProjectFile WHERE (ecm:mixinType !=
+					'HiddenInNavigation' AND
+					ecm:isCheckedInVersion = 0 AND
+					ecm:currentLifeCycleState != 'deleted' AND
+					ecm:parentId = ?)
+				</pattern>
+				<parameter>#{currentDocument.id}</parameter>
+				<sort column="dc:created" ascending="false" />
+				<pageSize>20</pageSize>
+			</coreQueryPageProvider>
+			<useGlobalPageSize>true</useGlobalPageSize>
+			<refresh>
+				<event>documentChanged</event>
+				<event>documentChildrenChanged</event>
+			</refresh>
+			<cacheKey>#{currentDocument.id}</cacheKey>
+			<cacheSize>0</cacheSize>
+			<selectionList>CURRENT_SELECTION</selectionList>
+			<actions category="CURRENT_SELECTION_LIST" />
+			<actions category="cv_actions@ProjectFile_listing" />
+			<showTitle>false</showTitle>
+			<showFilterForm>true</showFilterForm>
+			<showPageSizeSelector>true</showPageSizeSelector>
+			<showRefreshCommand>true</showRefreshCommand>
+			<resultLayouts>
+				<layout name="ProjectFile_listing" title="ProjectFile_listing"
+					translateTitle="true" iconPath="/icons/document_listing_icon.png"
+					showCSVExport="true" showEditColumns="true" showSpreadsheet="true" />
+			</resultLayouts>
+			<resultColumns>#{searchDocument.cvd.selectedLayoutColumns}
+			</resultColumns>
+			<resultLayout>#{searchDocument.cvd.resultLayoutName}</resultLayout>
+			<flags>
+				<flag>DOCUMENT_CONTENT</flag>
+			</flags>
+		</contentView>
 
 	</extension>
 
