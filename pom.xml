@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>athento-nx-common-doctypes</groupId>
 	<artifactId>athento-nx-common-doctypes</artifactId>
-	<version>1.5-SNAPSHOT</version>
+	<version>1.6-SNAPSHOT</version>
 	<name>Athento NX Common Doctypes</name>
 	<description>Athento NX Common Doctypes</description>
 <dependencyManagement>
