@@ -45,5 +45,7 @@
 	<xs:element name="thirdLevel" type="xs:string" />
 	<xs:element name="fourthLevel" type="xs:string" />
 	<xs:element name="fifthLevel" type="xs:string" />
+	<xs:element name="imputation" type="xs:string" />
+	<xs:element name="activity" type="xs:string" />
 
 </xs:schema>

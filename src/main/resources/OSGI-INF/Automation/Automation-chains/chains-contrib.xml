@@ -269,10 +269,32 @@
 					: empty
 				</param>
 			</operation>
+			<operation id="Context.SetVar">
+				<param type="string" name="name">imputation_var</param>
+				<param type="object" name="value">expr:Document["invoicing:imputation"]
+				</param>
+			</operation>
+			<operation id="Context.SetVar">
+				<param type="string" name="name">activity_var</param>
+				<param type="object" name="value">expr:Document["projectFile:activity"]
+				</param>
+			</operation>
 			<operation id="Context.SetWorkflowVar">
 				<param type="string" name="name">suffix_region</param>
 				<param type="object" name="value">expr:suffix_region_var == empty ?
 					empty : suffix_region_var
+				</param>
+			</operation>
+			<operation id="Context.SetWorkflowVar">
+				<param type="string" name="name">imputation</param>
+				<param type="object" name="value">expr:imputation_var == empty ?
+					empty : imputation_var
+				</param>
+			</operation>
+			<operation id="Context.SetWorkflowVar">
+				<param type="string" name="name">activity</param>
+				<param type="object" name="value">expr:activity_var == empty ?
+					empty : activity_var
 				</param>
 			</operation>
 			<operation id="Context.SetWorkflowVar">
@@ -308,8 +330,21 @@
 				</param>
 			</operation>
 			<operation id="Context.SetVar">
-				<param type="string" name="name">secondLevel_var</param>
+				<param type="string" name="name">secondLevel_RME_var</param>
+				<param type="object" name="value">expr:@{"group:RME_"+WorkflowVariables["activity"]}
+				</param>
+			</operation>
+			<operation id="Context.SetVar">
+				<param type="string" name="name">secondLevel_standard_var</param>
 				<param type="object" name="value">expr:@{"group:Level25_"+WorkflowVariables["suffix_office"]}
+				</param>
+			</operation>
+			<operation id="Context.SetVar">
+				<param type="string" name="name">secondLevel_var</param>
+				<param type="object" name="value">expr:WorkflowVariables["suffix_office"] == "0529" ?
+					secondLevel_RME_var : WorkflowVariables["suffix_office"] == "0354" ?
+					secondLevel_RME_var : WorkflowVariables["suffix_office"] == "0475" ?
+					secondLevel_RME_var : secondLevel_standard_var
 				</param>
 			</operation>
 			<operation id="Context.SetVar">
