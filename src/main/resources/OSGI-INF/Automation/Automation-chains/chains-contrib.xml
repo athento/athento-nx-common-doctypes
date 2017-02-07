@@ -20,6 +20,26 @@
 			</operation>
 		</chain>
 
+		<chain id="userFile-assignID">
+			<documentation>
+				Assign ID to dc:title from userFile:nameid
+			</documentation>
+			<operation id="Context.FetchDocument" />
+			<!-- Category. Used for uniqueness of number id -->
+			<operation id="Context.SetVar">
+				<param type="string" name="name">nameid</param>
+				<param type="object" name="value">expr:Document["userFile:nameid"]
+				</param>
+			</operation>
+			<operation id="Document.SetProperty">
+				<param type="string" name="xpath">dc:title</param>
+				<param type="boolean" name="save">false</param>
+				<param type="serializable" name="value">expr:nameid == empty ? empty : nameid
+				</param>
+			</operation>
+
+		</chain>
+
 		<chain id="projectFile-assignID">
 			<documentation>
 				Assign ID with the following rules: region + year (2
@@ -399,6 +419,11 @@
 				<param type="string" name="id">PV-UnlockDocument</param>
 				<param type="boolean" name="isolate">false</param>
 			</operation>
+			<operation id="Audit.Log">
+				<param type="string" name="event">Tarea de flujo de trabajo rechazada</param>
+				<param type="category" name="string">Document</param>
+				<param type="comment" name="string">expr:@{"Tarea de flujo de trabajo rechazada"}</param>
+			</operation>
 			<operation id="Document.Save" />
 		</chain>
 
@@ -411,6 +436,21 @@
 			<operation id="Context.RunOperation">
 				<param type="string" name="id">PV-UnlockDocument</param>
 				<param type="boolean" name="isolate">false</param>
+			</operation>
+			<operation id="Audit.Log">
+				<param type="string" name="event">Flujo de aprobación terminado con validacion ok</param>
+				<param type="category" name="string">Document</param>
+				<param type="comment" name="string">expr:@{"Flujo de aprobación terminado con validacion ok"}</param>
+			</operation>
+			<operation id="Document.Save" />
+		</chain>
+
+		<chain id="PV-Approved">
+			<operation id="Context.FetchDocument" />
+			<operation id="Audit.Log">
+				<param type="string" name="event">Tarea de flujo de trabajo validada</param>
+				<param type="category" name="string">Document</param>
+				<param type="comment" name="string">expr:@{"Tarea de flujo de trabajo validada"}</param>
 			</operation>
 			<operation id="Document.Save" />
 		</chain>
