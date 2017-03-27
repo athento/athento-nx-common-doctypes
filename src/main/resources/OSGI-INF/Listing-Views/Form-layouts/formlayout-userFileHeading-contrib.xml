@@ -19,12 +19,6 @@
             <rows>
                 <row>
                     <properties mode="any">
-                        <property name="nxl_colspan_0">2</property>
-                    </properties>
-                    <widget>isCurrentUser</widget>
-                </row>
-                <row>
-                    <properties mode="any">
                         <property name="nxl_colspan_0">1</property>
                         <property name="nxl_colspan_1">1</property>
                     </properties>
@@ -45,14 +39,6 @@
                         <property name="nxl_colspan_1">1</property>
                     </properties>
                     <widget>surname2</widget>
-                    <widget>area</widget>
-                </row>
-                <row>
-                    <properties mode="any">
-                        <property name="nxl_colspan_0">1</property>
-                        <property name="nxl_colspan_1">1</property>
-                    </properties>
-                    <widget>category</widget>
                     <widget>activity</widget>
                 </row>
                 <row>
@@ -60,7 +46,7 @@
                         <property name="nxl_colspan_0">1</property>
                         <property name="nxl_colspan_1">1</property>
                     </properties>
-                    <widget>nameid</widget>
+                    <widget>category</widget>
                     <widget>phone</widget>
                 </row>
                 <row>
@@ -68,9 +54,10 @@
                         <property name="nxl_colspan_0">1</property>
                         <property name="nxl_colspan_1">1</property>
                     </properties>
-                    <widget></widget>
+                    <widget>idNumber</widget>
                     <widget>mail</widget>
                 </row>
+
             </rows>
             <widget name="account" type="text">
                 <labels>
@@ -80,8 +67,12 @@
                 <fields>
                     <field>userFile:account</field>
                 </fields>
+                <widgetModes>
+                    <mode value="edit">hidden</mode>
+                    <mode value="create">hidden</mode>
+                </widgetModes>
             </widget>
-            <widget name="activity" type="text">
+            <widget name="activity" type="selectOneDirectory">
                 <labels>
                     <label mode="any">label.userFile.activity</label>
                 </labels>
@@ -89,15 +80,12 @@
                 <fields>
                     <field>userFile:activity</field>
                 </fields>
-            </widget>
-            <widget name="area" type="text">
-                <labels>
-                    <label mode="any">label.userFile.area</label>
-                </labels>
-                <translated>true</translated>
-                <fields>
-                    <field>userFile:area</field>
-                </fields>
+                <properties widgetMode="any">
+                    <property name="required">true</property>
+                    <property name="directoryName">activity</property>
+                    <property name="ordering">id</property>
+                    <property name="localize">true</property>
+                </properties>
             </widget>
             <widget name="category" type="text">
                 <labels>
@@ -108,15 +96,6 @@
                     <field>userFile:category</field>
                 </fields>
             </widget>
-            <widget name="isCurrentUser" type="checkbox">
-                <labels>
-                    <label mode="any">label.userFile.isCurrentUser</label>
-                </labels>
-                <translated>true</translated>
-                <fields>
-                    <field>userFile:isCurrentUser</field>
-                </fields>
-            </widget>
             <widget name="mail" type="text">
                 <labels>
                     <label mode="any">label.userFile.mail</label>
@@ -125,6 +104,9 @@
                 <fields>
                     <field>userFile:mail</field>
                 </fields>
+                <properties widgetMode="edit">
+                  <property name="required">#{layoutValue.type == 'TravelRequest' ? true : false}</property>
+                </properties>
             </widget>
             <widget name="name" type="text">
                 <labels>
@@ -134,17 +116,23 @@
                 <fields>
                     <field>userFile:name</field>
                 </fields>
+                <properties widgetMode="edit">
+                    <property name="required">true</property>
+                </properties>
             </widget>
-            <widget name="nameid" type="text">
+            <widget name="idNumber" type="text">
                 <labels>
-                    <label mode="any">label.userFile.nameid</label>
+                    <label mode="any">label.userFile.idNumber</label>
                 </labels>
                 <translated>true</translated>
                 <fields>
-                    <field>userFile:nameid</field>
+                    <field>userFile:idNumber</field>
                 </fields>
+                <properties widgetMode="edit">
+                    <property name="required">true</property>
+                </properties>
             </widget>
-            <widget name="office" type="text">
+            <widget name="office" type="selectOneDirectory">
                 <labels>
                     <label mode="any">label.userFile.office</label>
                 </labels>
@@ -152,6 +140,18 @@
                 <fields>
                     <field>userFile:office</field>
                 </fields>
+                <properties widgetMode="any">
+                    <property name="required">true</property>
+                    <property name="directoryName">office</property>
+                    <property name="ordering">id</property>
+                    <property name="displayIdAndLabel">true</property>
+                </properties>
+                <properties widgetMode="view">
+                    <property name="required">true</property>
+                    <property name="directoryName">office</property>
+                    <property name="ordering">id</property>
+                    <property name="displayIdAndLabel">false</property>
+                </properties>
             </widget>
             <widget name="phone" type="text">
                 <labels>
@@ -161,6 +161,9 @@
                 <fields>
                     <field>userFile:phone</field>
                 </fields>
+                <properties widgetMode="edit">
+                    <property name="required">#{layoutValue.type == 'TravelRequest' ? true : false}</property>
+                </properties>
             </widget>
             <widget name="surname1" type="text">
                 <labels>
@@ -170,6 +173,9 @@
                 <fields>
                     <field>userFile:surname1</field>
                 </fields>
+                <properties widgetMode="edit">
+                    <property name="required">true</property>
+                </properties>
             </widget>
             <widget name="surname2" type="text">
                 <labels>
@@ -178,15 +184,6 @@
                 <translated>true</translated>
                 <fields>
                     <field>userFile:surname2</field>
-                </fields>
-            </widget>
-            <widget name="phone" type="text">
-                <labels>
-                    <label mode="any">label.userFile.phone</label>
-                </labels>
-                <translated>true</translated>
-                <fields>
-                    <field>userFile:phone</field>
                 </fields>
             </widget>
             <widget name="location" type="text">

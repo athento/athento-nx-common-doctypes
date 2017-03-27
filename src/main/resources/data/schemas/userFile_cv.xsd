@@ -54,5 +54,17 @@
 	<xs:element name="userFile_mail" type="xs:string" />
 	<!-- User Address -->
 	<xs:element name="userFile_address" type="xs:string" />
+	<!-- Bank account: Bank name -->
+	<xs:element name="userFile_bankName" type="xs:string" />
+	<!-- Bank account: SP-Código -->
+	<xs:element name="userFile_bankCodigo" type="xs:string" />
+	<!-- Bank account: SP-Oficina -->
+	<xs:element name="userFile_bankOficina" type="xs:string" />
+	<!-- Bank account: SP-DC -->
+	<xs:element name="userFile_bankDC" type="xs:string" />
+	<!-- Bank account: SP-Número de Cuenta -->
+	<xs:element name="userFile_bankNumeroCuenta" type="xs:string" />
+	<!-- Bank account: SP-Iban -->
+	<xs:element name="userFile_bankIban" type="xs:string" />
 	
 </xs:schema>
