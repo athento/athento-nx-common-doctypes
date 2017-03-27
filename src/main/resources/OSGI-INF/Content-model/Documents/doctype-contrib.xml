@@ -51,11 +51,9 @@
 			</category>
 			<default-view>view_documents</default-view>
 			<layouts mode="create">
-				<layout>heading</layout>
 				<layout>layout@formlayout-userFile</layout>
 			</layouts>
 			<layouts mode="edit">
-				<layout>heading</layout>
 				<layout>layout@formlayout-userFile</layout>
 			</layouts>
 			<layouts mode="view">

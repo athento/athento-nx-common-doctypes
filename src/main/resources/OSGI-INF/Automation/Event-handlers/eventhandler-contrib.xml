@@ -32,6 +32,15 @@
 			</filters>
 		</handler>
 
+		<handler chainId="userFile-assignID">
+			<event>aboutToCreate</event>
+			<event>beforeDocumentModification</event>
+			<filters>
+				<doctype>UserFile</doctype>
+				<attribute>Regular Document</attribute>
+			</filters>
+		</handler>
+
 	</extension>
 
 </component>

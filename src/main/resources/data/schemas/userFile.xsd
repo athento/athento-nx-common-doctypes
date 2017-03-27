@@ -70,5 +70,17 @@
 	<xs:element name="account" type="xs:string" />
 	<!-- True if the current user IS the requester, false if the user is going to use the form to complete user info -->
 	<xs:element name="isCurrentUser" type="xs:boolean" default="true"/>
+	<!-- Bank account: Bank name -->
+	<xs:element name="bankName" type="xs:string" />
+	<!-- Bank account: SP-Código -->
+	<xs:element name="bankCodigo" type="xs:string" />
+	<!-- Bank account: SP-Oficina -->
+	<xs:element name="bankOficina" type="xs:string" />
+	<!-- Bank account: SP-DC -->
+	<xs:element name="bankDC" type="xs:string" />
+	<!-- Bank account: SP-Número de Cuenta -->
+	<xs:element name="bankNumeroCuenta" type="xs:string" />
+	<!-- Bank account: SP-Iban -->
+	<xs:element name="bankIban" type="xs:string" />
 
 </xs:schema>
