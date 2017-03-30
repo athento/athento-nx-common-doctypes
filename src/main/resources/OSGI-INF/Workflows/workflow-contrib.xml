@@ -16,10 +16,18 @@
 
 	<extension target="org.nuxeo.ecm.platform.actions.ActionService"
 		point="filters">
-		
+
 		<filter id="filter@wf@pv" append="true">
+			<rule grant="true">
+				<permission>Write</permission>
+				<type>ProjectFile</type>
+				<group>pv_wf_initiators</group>
+			</rule>
 			<rule grant="false">
 				<condition>document.currentLifeCycleState != "Draft"</condition>
+			</rule>
+			<rule grant="false">
+				<condition>document.isImmutable() || document.isProxy()</condition>
 			</rule>
 		</filter>
 		
