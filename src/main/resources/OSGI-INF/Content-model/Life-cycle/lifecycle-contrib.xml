@@ -48,6 +48,9 @@
 				<transition name="to_Validated" destinationState="Validated">
 					<description>File Validated</description>
 				</transition>
+				<transition name="to_NoFinished" destinationState="NoFinished">
+					<description>Not finished due to some issue</description>
+				</transition>
 			</transitions>
 			<states>
 				<state name="Denied"
@@ -57,6 +60,7 @@
 						<transition>to_Closed</transition>
 						<transition>to_Draft</transition>
 						<transition>to_Finished</transition>
+						<transition>to_NoFinished</transition>
 						<transition>to_PendingValidation</transition>
 						<transition>to_Validated</transition>
 					</transitions>
@@ -69,6 +73,7 @@
 						<transition>to_Closed</transition>
 						<transition>to_Denied</transition>
 						<transition>to_Finished</transition>
+						<transition>to_NoFinished</transition>
 						<transition>to_PendingValidation</transition>
 						<transition>to_Validated</transition>
 					</transitions>
@@ -80,6 +85,7 @@
 						<transition>to_Denied</transition>
 						<transition>to_Draft</transition>
 						<transition>to_Finished</transition>
+						<transition>to_NoFinished</transition>
 						<transition>to_Validated</transition>
 					</transitions>
 				</state>
@@ -91,6 +97,7 @@
 						<transition>to_Denied</transition>
 						<transition>to_Draft</transition>
 						<transition>to_Finished</transition>
+						<transition>to_NoFinished</transition>
 						<transition>to_PendingValidation</transition>
 					</transitions>
 				</state>
@@ -100,6 +107,7 @@
 						<transition>to_Denied</transition>
 						<transition>to_Draft</transition>
 						<transition>to_Finished</transition>
+						<transition>to_NoFinished</transition>
 						<transition>to_PendingValidation</transition>
 						<transition>to_Validated</transition>
 					</transitions>
@@ -110,6 +118,19 @@
 						<transition>to_Closed</transition>
 						<transition>to_Denied</transition>
 						<transition>to_Draft</transition>
+						<transition>to_NoFinished</transition>
+						<transition>to_PendingValidation</transition>
+						<transition>to_Validated</transition>
+					</transitions>
+				</state>
+				<state name="NoFinished"
+					   description="Not finished due to some issue">
+					<transitions>
+						<transition>delete</transition>
+						<transition>to_Closed</transition>
+						<transition>to_Denied</transition>
+						<transition>to_Draft</transition>
+						<transition>to_Finished</transition>
 						<transition>to_PendingValidation</transition>
 						<transition>to_Validated</transition>
 					</transitions>
