@@ -50,7 +50,7 @@
 			<cacheMaxSize>1000</cacheMaxSize>
 			<idField>id</idField>
 			<autoincrementIdField>false</autoincrementIdField>
-			<createTablePolicy>on_missing_columns</createTablePolicy>
+			<createTablePolicy>always</createTablePolicy>
 			<table>vocabulary_mk_category</table>
 			<dataFile>data/vocabularies/mk_category.csv</dataFile>
 		</directory>
