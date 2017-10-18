@@ -535,7 +535,7 @@
 				<param type="string" name="name">Administrator</param>
 			</operation>
 			<operation id="Document.SetLifeCycle">
-				<param type="string" name="value">to_PendingValidation</param>
+				<param type="string" name="value">toPendingValidation</param>
 			</operation>
 			<operation id="Auth.Logout" />
 		</chain>
@@ -546,7 +546,7 @@
 				<param type="string" name="name">Administrator</param>
 			</operation>
 			<operation id="Document.SetLifeCycle">
-				<param type="string" name="value">to_Validated</param>
+				<param type="string" name="value">toValidated</param>
 			</operation>
 			<operation id="Auth.Logout" />
 		</chain>
@@ -557,7 +557,7 @@
 				<param type="string" name="name">Administrator</param>
 			</operation>
 			<operation id="Document.SetLifeCycle">
-				<param type="string" name="value">to_Draft</param>
+				<param type="string" name="value">toDraft</param>
 			</operation>
 			<operation id="Auth.Logout" />
 		</chain>
