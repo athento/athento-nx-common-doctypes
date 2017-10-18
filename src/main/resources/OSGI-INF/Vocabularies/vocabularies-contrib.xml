@@ -140,18 +140,6 @@
 			<parentDirectory>org_high</parentDirectory>
 		</directory>
 		
-		<directory name="pivot_users">
-			<schema>vocabulary</schema>
-			<dataSource>java:/nxsqldirectory</dataSource>
-			<cacheTimeout>3600</cacheTimeout>
-			<cacheMaxSize>1000</cacheMaxSize>
-			<idField>id</idField>
-			<autoincrementIdField>false</autoincrementIdField>
-			<createTablePolicy>on_missing_columns</createTablePolicy>
-			<table>vocabulary_pivot_users</table>
-			<dataFile>data/vocabularies/pivot_users.csv</dataFile>
-		</directory>
-		
 		<directory name="proj_cfg">
 			<schema>vocabulary</schema>
 			<dataSource>java:/nxsqldirectory</dataSource>
@@ -190,7 +178,6 @@
 		<directory name="org_low" layout="vocabulary-org_low"
 			sortField="label" />
 		<directory name="proj_cfg" layout="vocabulary" sortField="label" />
-		<directory name="pivot_users" layout="vocabulary" sortField="label" />
 
 	</extension>
 
