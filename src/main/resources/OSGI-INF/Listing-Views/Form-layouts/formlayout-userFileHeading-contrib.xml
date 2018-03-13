@@ -57,6 +57,12 @@
                     <widget>idNumber</widget>
                     <widget>mail</widget>
                 </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                    </properties>
+                    <widget>ipn</widget>
+                </row>
 
             </rows>
             <widget name="account" type="text">
@@ -95,6 +101,19 @@
                 <fields>
                     <field>userFile:category</field>
                 </fields>
+            </widget>
+            <widget name="ipn" type="text">
+                <labels>
+                    <label mode="any">IPN</label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>userFile:ipn</field>
+                </fields>
+                <properties widgetMode="edit">
+                    <property name="required">#{layoutValue.type == 'TravelRequest' ? true :
+                    layoutValue.type == 'Expenses' ? true : false}</property>
+                </properties>
             </widget>
             <widget name="mail" type="text">
                 <labels>

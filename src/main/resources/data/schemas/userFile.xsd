@@ -58,6 +58,8 @@
 	<xs:element name="activity" type="xs:string" />
 	<!-- Identification Number -->
 	<xs:element name="idNumber" type="xs:string" />
+	<!-- IPN Identification Number -->
+	<xs:element name="ipn" type="xs:string" />
 	<!-- User Mail -->
 	<xs:element name="mail" type="xs:string" />
 	<!-- User Address -->
